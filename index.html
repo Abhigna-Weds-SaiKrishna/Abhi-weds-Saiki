@@ -182,6 +182,82 @@
     .button.ghost:hover { background: #f3e5ce; }
     .button:disabled { opacity: .6; cursor: wait; transform: none; }
 
+
+    /* Fun RSVP Radio Cards & Animations */
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 8px;
+    }
+    .radio-card {
+      cursor: pointer;
+      display: block;
+      perspective: 1000px; /* Helps with the 3D pop effect */
+    }
+    .radio-card input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .card-content {
+      display: flex;
+      align-items: center;
+      padding: 16px 20px;
+      border: 3px solid #e0cdb3;
+      border-radius: 16px;
+      background: #ffffff;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy pop */
+      transform-origin: center;
+    }
+    .card-content .icon {
+      font-size: 28px;
+      margin-right: 16px;
+      transition: transform 0.3s ease;
+    }
+    .card-content .text {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    /* Popping active state */
+    .radio-card input:checked + .card-content {
+      border-color: var(--wine);
+      background: #fffafa;
+      transform: scale(1.05) translateY(-4px);
+      box-shadow: 0 12px 24px rgba(110, 20, 43, 0.18);
+    }
+    .radio-card input:checked + .card-content .icon {
+      transform: scale(1.3) rotate(-10deg);
+    }
+    .radio-card input:focus-visible + .card-content {
+      outline: 3px solid var(--green);
+      outline-offset: 4px;
+    }
+
+    /* Floating Emoji CSS */
+    .emoji-burst {
+      position: fixed;
+      bottom: -50px;
+      pointer-events: none;
+      z-index: 9999;
+      animation: floatUpBurst linear forwards;
+    }
+    @keyframes floatUpBurst {
+      0% { 
+        transform: translate(0, 0) scale(0.5) rotate(0deg); 
+        opacity: 1; 
+      }
+      100% { 
+        transform: translate(var(--drift), -110vh) scale(1.5) rotate(var(--rot)); 
+        opacity: 0; 
+      }
+    }
+
+
+
     /* High-contrast artwork container */
     .scene {
       width: 100%;
@@ -1240,11 +1316,30 @@
             <input id="name" name="Name" autocomplete="name" placeholder="Enter your full name" required maxlength="120">
           </div>
           <div class="field">
-            <label for="attendance">Will you be joining us?</label>
-            <select id="attendance" name="Attending">
-              <option value="Yes">Yes, joyfully attending!</option>
-              <option value="No">Sadly, I cannot make it</option>
-            </select>
+            <label>Will you be joining us?</label>
+            <div class="radio-group">
+              <label class="radio-card">
+                <input type="radio" name="Attending" value="Bride Side" required>
+                <span class="card-content">
+                  <span class="icon" aria-hidden="true">💃</span>
+                  <span class="text">Yes, Team Bride (Abhigna's Side)!</span>
+                </span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="Attending" value="Groom Side" required>
+                <span class="card-content">
+                  <span class="icon" aria-hidden="true">🕺</span>
+                  <span class="text">Yes, Team Groom (Sai Krishna's Side)!</span>
+                </span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="Attending" value="No">
+                <span class="card-content">
+                  <span class="icon" aria-hidden="true">🛋️</span>
+                  <span class="text">Celebrating from the couch (Cannot make it)</span>
+                </span>
+              </label>
+            </div>
           </div>
           <div class="field" id="party-field">
             <label for="guests">Number attending, including you</label>
@@ -1275,6 +1370,55 @@
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw1HL5bZfJ7vfG4RNAKiRjrdVKb5EcL1Ywbejre-Lo5vPsQtag6STAz439pAFI9gDyz/exec';
 
     const $ = id => document.getElementById(id);
+
+
+    // Function to spawn floating emojis
+    function triggerEmojiBurst(isAttending) {
+      // Joyful emojis for attending, cozy/sad emojis for not attending
+      const emojis = isAttending 
+        ? ['🎉', '💖', '✨', '🥳', '💃', '🕺', '🥂', '🎊'] 
+        : ['🛋️', '🥺', '💙', '💤', '💌', '🕊️'];
+      
+      const burstCount = 35; // Number of emojis to spawn
+
+      for (let i = 0; i < burstCount; i++) {
+        const el = document.createElement('div');
+        el.className = 'emoji-burst';
+        el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        
+        // Randomize starting position, size, and animation variables
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.fontSize = (Math.random() * 24 + 16) + 'px';
+        el.style.animationDuration = (Math.random() * 1.5 + 1.5) + 's';
+        el.style.animationDelay = (Math.random() * 0.4) + 's';
+        
+        // Custom CSS variables for horizontal drift and rotation
+        const drift = (Math.random() - 0.5) * 300 + 'px';
+        const rot = (Math.random() - 0.5) * 360 + 'deg';
+        el.style.setProperty('--drift', drift);
+        el.style.setProperty('--rot', rot);
+
+        document.body.appendChild(el);
+
+        // Clean up the DOM after animation finishes
+        setTimeout(() => el.remove(), 3000);
+      }
+    }
+
+    // Watch for radio button changes
+    document.querySelectorAll('input[name="Attending"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const isAttending = radio.value === 'Bride Side' || radio.value === 'Groom Side';
+        
+        // Trigger the fun emoji animation
+        triggerEmojiBurst(isAttending);
+
+        // Toggle the guest count field
+        $('party-field').hidden = !isAttending;
+        $('guests').disabled = !isAttending;
+        $('guests').required = isAttending;
+      });
+    });
 
     // Smooth-scroll navigation for all in-page buttons & links
     document.querySelectorAll('[data-scroll]').forEach(link => {
@@ -1322,11 +1466,13 @@
 
     let preparedResponse = null;
 
-    $('attendance').addEventListener('change', () => {
-      const yes = $('attendance').value === 'Yes';
-      $('party-field').hidden = !yes;
-      $('guests').disabled = !yes;
-      $('guests').required = yes;
+    document.querySelectorAll('input[name="Attending"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const isAttending = radio.value === 'Bride Side' || radio.value === 'Groom Side';
+        $('party-field').hidden = !isAttending;
+        $('guests').disabled = !isAttending;
+        $('guests').required = isAttending;
+      });
     });
 
     $('name').addEventListener('input', () => $('name').setCustomValidity(''));
@@ -1340,11 +1486,14 @@
         return;
       }
 
+      const attendingVal = document.querySelector('input[name="Attending"]:checked').value;
+      const isAttending = attendingVal === 'Bride Side' || attendingVal === 'Groom Side';
+
       preparedResponse = {
         Timestamp: new Date().toISOString(),
         Name: nameInput.value.trim(),
-        Attending: $('attendance').value,
-        Guests: $('attendance').value === 'Yes' ? Number($('guests').value) || 1 : 0,
+        Attending: attendingVal,
+        Guests: isAttending ? Number($('guests').value) || 1 : 0,
         Message: $('message').value.trim()
       };
 
@@ -1421,6 +1570,7 @@
       window.addEventListener('resize', updateScroll, { passive: true });
       updateScroll();
     })();
+    
   </script>
 </body>
 </html>
