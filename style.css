@@ -259,6 +259,36 @@ nav a:hover { color: var(--wine); text-decoration: underline; }
   margin: 10px 0 0;
 }
 
+/* Celebrations & Event Cards */
+.events-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 52px;
+}
+.events-header {
+  text-align: center;
+  margin-bottom: 6px;
+}
+.events-header h2 {
+  font: 700 clamp(30px, 3.8vw, 42px) Georgia, serif;
+  color: var(--wine);
+  margin: 6px 0 0;
+}
+.event-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--wine);
+  background: #f5e6c8;
+  border: 1px solid #d5b887;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
 /* Details Card */
 .details {
   display: grid;
@@ -268,9 +298,14 @@ nav a:hover { color: var(--wine); text-decoration: underline; }
   border: 2px solid var(--border);
   border-radius: 80px 80px 24px 24px;
   background: var(--card);
-  margin-top: 42px;
+  margin-top: 0;
   padding: 32px 40px;
   box-shadow: 0 16px 36px rgba(44, 26, 20, 0.1);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.details:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 44px rgba(44, 26, 20, 0.14);
 }
 .details h2 {
   font: 700 30px Georgia, serif;

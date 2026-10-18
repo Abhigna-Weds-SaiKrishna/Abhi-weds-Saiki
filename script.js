@@ -43,6 +43,10 @@ const WEDDING_CONFIG = {
     heroLede2: 'A little tradition, a lot of joy,<br>and a lifetime of togetherness.',
     heroCaption: 'With the divine blessings of Sri Ganesha & Sri Venkateswara',
 
+    // Events / Celebrations Section
+    eventsEyebrow: 'Celebrations &amp; Ceremonies',
+    eventsTitle: 'Auspicious Occasions',
+
     // Details Section
     detailsDateEyebrow: 'The auspicious day',
     detailsLocationEyebrow: 'Where love gathers',
@@ -60,6 +64,40 @@ const WEDDING_CONFIG = {
     // Footer
     footerSubtext: 'MADE WITH LOVE'
   },
+
+  // 3 Wedding Events (Pelli Koduku, Marriage, Satyanarayana Vratam)
+  events: [
+    {
+      id: 'pelli-koduku',
+      badge: 'Pre-Wedding Ceremony',
+      title: 'Pelli Koduku',
+      timeDetail: 'Friday, Nov 20, 2026<br>Morning · 8:30 AM',
+      actionText: 'Join the celebrations ↓',
+      locationHeading: 'Groom’s Residence',
+      locationAddress: '309 Redonda Dr<br>Liberty Hill, Texas',
+      mapsUrl: 'https://www.google.com/maps/search/?api=1&query=309+Redonda+Dr+Liberty+Hill+TX'
+    },
+    {
+      id: 'marriage',
+      badge: 'The Auspicious Wedding',
+      title: 'Marriage',
+      timeDetail: 'Sunday, Nov 22, 2026<br>Muhurtham · 9:30 AM',
+      actionText: 'Join our celebration ↓',
+      locationHeading: 'Liberty Hill, TX',
+      locationAddress: '309 Redonda Dr<br>Liberty Hill, Texas',
+      mapsUrl: 'https://www.google.com/maps/search/?api=1&query=309+Redonda+Dr+Liberty+Hill+TX'
+    },
+    {
+      id: 'satyanarayana-vratam',
+      badge: 'Post-Wedding Puja',
+      title: 'Satyanarayana Vratam',
+      timeDetail: 'Monday, Nov 23, 2026<br>Auspicious Puja · 10:00 AM',
+      actionText: 'Seek divine blessings ↓',
+      locationHeading: 'Liberty Hill, TX',
+      locationAddress: '309 Redonda Dr<br>Liberty Hill, Texas',
+      mapsUrl: 'https://www.google.com/maps/search/?api=1&query=309+Redonda+Dr+Liberty+Hill+TX'
+    }
+  ],
 
   // Emojis for celebratory & declined RSVP responses
   emojis: {
@@ -137,7 +175,40 @@ function applyWeddingConfig() {
     gcalLink.href = gcalUrl.toString();
   }
 
-  // 4. Details Section
+  // 4. Celebrations & Event Blocks
+  const eventsEyebrow = $('events-eyebrow');
+  if (eventsEyebrow && c.texts && c.texts.eventsEyebrow) eventsEyebrow.innerHTML = c.texts.eventsEyebrow;
+
+  const eventsTitle = $('events-title');
+  if (eventsTitle && c.texts && c.texts.eventsTitle) eventsTitle.innerHTML = c.texts.eventsTitle;
+
+  if (c.events && Array.isArray(c.events)) {
+    c.events.forEach((ev, idx) => {
+      const num = idx + 1;
+      const badge = $(`event-${num}-badge`);
+      if (badge && ev.badge) badge.textContent = ev.badge;
+
+      const title = $(`event-${num}-title`);
+      if (title && ev.title) title.textContent = ev.title;
+
+      const time = $(`event-${num}-time`);
+      if (time && ev.timeDetail) time.innerHTML = ev.timeDetail;
+
+      const action = $(`event-${num}-action`);
+      if (action && ev.actionText) action.textContent = ev.actionText;
+
+      const locHeading = $(`event-${num}-location`);
+      if (locHeading && ev.locationHeading) locHeading.textContent = ev.locationHeading;
+
+      const locAddr = $(`event-${num}-address`);
+      if (locAddr && ev.locationAddress) locAddr.innerHTML = ev.locationAddress;
+
+      const mapLink = $(`event-${num}-map`);
+      if (mapLink && ev.mapsUrl) mapLink.href = ev.mapsUrl;
+    });
+  }
+
+  // Fallback bindings for existing single-card IDs
   const detailsDateEyebrow = $('details-date-eyebrow');
   if (detailsDateEyebrow && c.texts) detailsDateEyebrow.innerHTML = c.texts.detailsDateEyebrow;
 
