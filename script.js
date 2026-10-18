@@ -60,6 +60,10 @@ const WEDDING_CONFIG = {
     rsvpTeamGroom: "Yes, Team Groom (Sai Krishna's Side)!",
     rsvpDecline: 'Celebrating from the couch (Cannot make it)',
     rsvpDeclineIcon: '🥺',
+    rsvpEventsLabel: 'Which celebrations will you attend?',
+    rsvpEventsSubtext: "Choose all events you'll be celebrating with us:",
+    rsvpSelectAll: 'Select All',
+    rsvpClearAll: 'Clear All',
 
     // Footer
     footerSubtext: 'MADE WITH LOVE'
@@ -292,6 +296,38 @@ function applyWeddingConfig() {
     rsvpDeclineIcon.textContent = c.texts.rsvpDeclineIcon;
   }
 
+  const rsvpEventsLabel = $('rsvp-events-label');
+  if (rsvpEventsLabel && c.texts && c.texts.rsvpEventsLabel) {
+    rsvpEventsLabel.textContent = c.texts.rsvpEventsLabel;
+  }
+  const rsvpEventsSub = $('rsvp-events-subtext');
+  if (rsvpEventsSub && c.texts && c.texts.rsvpEventsSubtext) {
+    rsvpEventsSub.textContent = c.texts.rsvpEventsSubtext;
+  }
+
+  // Bind RSVP events checkbox titles & subtitles from c.events
+  if (c.events && c.events.length >= 3) {
+    const ev1 = c.events[0];
+    if (ev1 && ev1.pelliKoduku) {
+      const t = $('rsvp-event-1-title'); if (t && ev1.pelliKoduku.title) t.textContent = ev1.pelliKoduku.title;
+      const s = $('rsvp-event-1-sub'); if (s && ev1.pelliKoduku.timeDetail) s.textContent = ev1.pelliKoduku.timeDetail.replace(/<br>/g, ' · ') + " (Groom's Ceremony)";
+    }
+    if (ev1 && ev1.pelliKuturu) {
+      const t = $('rsvp-event-1b-title'); if (t && ev1.pelliKuturu.title) t.textContent = ev1.pelliKuturu.title;
+      const s = $('rsvp-event-1b-sub'); if (s && ev1.pelliKuturu.timeDetail) s.textContent = ev1.pelliKuturu.timeDetail.replace(/<br>/g, ' · ') + " (Bride's Ceremony)";
+    }
+    const ev2 = c.events[1];
+    if (ev2) {
+      const t = $('rsvp-event-2-title'); if (t && ev2.title) t.textContent = ev2.title;
+      const s = $('rsvp-event-2-sub'); if (s && ev2.timeDetail) s.textContent = ev2.timeDetail.replace(/<br>/g, ' · ');
+    }
+    const ev3 = c.events[2];
+    if (ev3) {
+      const t = $('rsvp-event-3-title'); if (t && ev3.title) t.textContent = ev3.title;
+      const s = $('rsvp-event-3-sub'); if (s && ev3.timeDetail) s.textContent = ev3.timeDetail.replace(/<br>/g, ' · ');
+    }
+  }
+
   // 6. Footer
   const footerNames = $('footer-names');
   if (footerNames && c.couple) footerNames.textContent = `${c.couple.groom} & ${c.couple.bride}`;
@@ -331,6 +367,18 @@ function triggerEmojiBurst(isAttending) {
   }
 }
 
+// Function to update "Select All" button label
+function updateSelectAllButtonText() {
+  const selectAllBtn = $('btn-select-all-events');
+  if (!selectAllBtn) return;
+  const checkboxes = document.querySelectorAll('input[name="EventsAttending"]');
+  const allChecked = Array.from(checkboxes).length > 0 && Array.from(checkboxes).every(cb => cb.checked);
+  const c = WEDDING_CONFIG;
+  const clearText = (c && c.texts && c.texts.rsvpClearAll) || 'Clear All';
+  const selectText = (c && c.texts && c.texts.rsvpSelectAll) || 'Select All';
+  selectAllBtn.textContent = allChecked ? clearText : selectText;
+}
+
 // Watch for radio button changes
 document.querySelectorAll('input[name="Attending"]').forEach(radio => {
   radio.addEventListener('change', () => {
@@ -339,12 +387,58 @@ document.querySelectorAll('input[name="Attending"]').forEach(radio => {
     triggerEmojiBurst(isAttending);
 
     const partyField = $('party-field');
+    const eventsField = $('events-field');
     const guests = $('guests');
     if (partyField) partyField.hidden = !isAttending;
+    if (eventsField) eventsField.hidden = !isAttending;
     if (guests) {
       guests.disabled = !isAttending;
       guests.required = isAttending;
     }
+
+    // Smart pre-select based on team selected
+    if (isAttending) {
+      const pkCheck = $('event-check-pelli-koduku');
+      const pkuCheck = $('event-check-pelli-kuturu');
+      const marCheck = $('event-check-marriage');
+      const satCheck = $('event-check-satyanarayana');
+
+      if (marCheck) marCheck.checked = true;
+      if (satCheck) satCheck.checked = true;
+
+      if (radio.value === 'Bride Side') {
+        if (pkuCheck) pkuCheck.checked = true;
+        if (pkCheck) pkCheck.checked = false;
+      } else if (radio.value === 'Groom Side') {
+        if (pkCheck) pkCheck.checked = true;
+        if (pkuCheck) pkuCheck.checked = false;
+      }
+      const eventsError = $('events-error');
+      if (eventsError) eventsError.hidden = true;
+      updateSelectAllButtonText();
+    }
+  });
+});
+
+// "Select All" / "Clear All" toggle button
+const selectAllBtn = $('btn-select-all-events');
+if (selectAllBtn) {
+  selectAllBtn.addEventListener('click', () => {
+    const checkboxes = document.querySelectorAll('input[name="EventsAttending"]');
+    const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+    checkboxes.forEach(cb => { cb.checked = !allChecked; });
+    const eventsError = $('events-error');
+    if (eventsError && !allChecked) eventsError.hidden = true;
+    updateSelectAllButtonText();
+  });
+}
+
+// Checkbox change listener
+document.querySelectorAll('input[name="EventsAttending"]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const eventsError = $('events-error');
+    if (eventsError) eventsError.hidden = true;
+    updateSelectAllButtonText();
   });
 });
 
@@ -421,10 +515,25 @@ if (rsvpForm) {
     const attendingVal = attendingInput ? attendingInput.value : '';
     const isAttending = attendingVal === 'Bride Side' || attendingVal === 'Groom Side';
 
+    let selectedEvents = [];
+    if (isAttending) {
+      const checkedBoxes = document.querySelectorAll('input[name="EventsAttending"]:checked');
+      selectedEvents = Array.from(checkedBoxes).map(cb => cb.value);
+      if (selectedEvents.length === 0) {
+        const eventsError = $('events-error');
+        if (eventsError) {
+          eventsError.hidden = false;
+          eventsError.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        return;
+      }
+    }
+
     preparedResponse = {
       Timestamp: new Date().toISOString(),
       Name: nameField.value.trim(),
       Attending: attendingVal,
+      Events: isAttending ? selectedEvents.join(', ') : 'None',
       Guests: isAttending ? Number($('guests').value) || 1 : 0,
       Message: $('message') ? $('message').value.trim() : ''
     };
@@ -469,7 +578,10 @@ if (rsvpForm) {
       if (downloadRsvp) downloadRsvp.hidden = false;
       rsvpForm.reset();
       const partyField = $('party-field');
+      const eventsField = $('events-field');
       if (partyField) partyField.hidden = false;
+      if (eventsField) eventsField.hidden = false;
+      updateSelectAllButtonText();
     } catch (error) {
       if (status) {
         status.className = 'status warn';
@@ -495,6 +607,7 @@ if (downloadRsvpBtn) {
       '--------------------------------------------------------',
       'Name: ' + preparedResponse.Name,
       'Attending: ' + preparedResponse.Attending,
+      'Events Attending: ' + (preparedResponse.Events || 'None'),
       'Guests: ' + preparedResponse.Guests,
       'Message: ' + (preparedResponse.Message || '—'),
       ''

@@ -472,6 +472,136 @@ input:focus, select:focus, textarea:focus {
 }
 input::placeholder, textarea::placeholder { color: #755b4d; opacity: 1; }
 textarea { resize: vertical; }
+
+/* Events Attending Checkboxes in RSVP Form */
+.field-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.field-header label {
+  margin-bottom: 0;
+}
+.btn-select-all {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-select-all:hover {
+  background: #fdf5e6;
+  color: var(--wine);
+  border-color: var(--wine);
+}
+.field-subtext {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0 0 10px 0;
+  font-weight: 500;
+}
+.events-check-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.event-check-card {
+  cursor: pointer;
+  display: block;
+  user-select: none;
+  position: relative;
+}
+.event-check-card input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.event-check-content {
+  display: flex;
+  align-items: center;
+  padding: 11px 14px;
+  border: 2px solid #e0cdb3;
+  border-radius: 12px;
+  background: #ffffff;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.event-check-card:hover .event-check-content {
+  border-color: #cbb389;
+  background: #fffdf9;
+  transform: translateY(-1px);
+}
+.check-box {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid #bfa477;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+  background: #ffffff;
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+.check-box svg {
+  display: none;
+}
+.event-check-card input:checked + .event-check-content {
+  border-color: var(--wine);
+  background: #fffafa;
+  box-shadow: 0 4px 14px rgba(110, 20, 43, 0.08);
+}
+.event-check-card input:checked + .event-check-content .check-box {
+  background: var(--wine);
+  border-color: var(--wine);
+  color: #ffffff;
+}
+.event-check-card input:checked + .event-check-content .check-box svg {
+  display: block;
+}
+.event-icon {
+  font-size: 22px;
+  margin-right: 12px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+.event-check-card input:checked + .event-check-content .event-icon {
+  transform: scale(1.15);
+}
+.event-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.event-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.event-sub {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+}
+.event-check-card input:focus-visible + .event-check-content {
+  outline: 3px solid var(--green);
+  outline-offset: 2px;
+}
+.field-error {
+  color: #c91e38;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 6px 0 0 2px;
+}
 form .button { width: 100%; }
 .status {
   font-size: 14px;

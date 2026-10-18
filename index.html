@@ -929,6 +929,82 @@
               </label>
             </div>
           </div>
+
+          <!-- EVENTS ATTENDING SELECTION -->
+          <div class="field" id="events-field">
+            <div class="field-header">
+              <label id="rsvp-events-label">Which celebrations will you attend?</label>
+              <button type="button" class="btn-select-all" id="btn-select-all-events">Select All</button>
+            </div>
+            <p class="field-subtext" id="rsvp-events-subtext">Choose all events you'll be celebrating with us:</p>
+            <div class="events-check-group" id="events-check-group">
+              <label class="event-check-card" for="event-check-pelli-koduku">
+                <input type="checkbox" id="event-check-pelli-koduku" name="EventsAttending" value="Pelli Koduku" checked>
+                <span class="event-check-content">
+                  <span class="check-box" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="3 8.5 6.5 12 13 4"></polyline>
+                    </svg>
+                  </span>
+                  <span class="event-icon" aria-hidden="true">💛</span>
+                  <span class="event-details">
+                    <span class="event-name" id="rsvp-event-1-title">Pelli Koduku</span>
+                    <span class="event-sub" id="rsvp-event-1-sub">Fri, Nov 20 · 8:30 AM (Groom's Ceremony)</span>
+                  </span>
+                </span>
+              </label>
+
+              <label class="event-check-card" for="event-check-pelli-kuturu">
+                <input type="checkbox" id="event-check-pelli-kuturu" name="EventsAttending" value="Pelli Kuturu" checked>
+                <span class="event-check-content">
+                  <span class="check-box" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="3 8.5 6.5 12 13 4"></polyline>
+                    </svg>
+                  </span>
+                  <span class="event-icon" aria-hidden="true">🌸</span>
+                  <span class="event-details">
+                    <span class="event-name" id="rsvp-event-1b-title">Pelli Kuturu</span>
+                    <span class="event-sub" id="rsvp-event-1b-sub">Fri, Nov 20 · 10:00 AM (Bride's Ceremony)</span>
+                  </span>
+                </span>
+              </label>
+
+              <label class="event-check-card" for="event-check-marriage">
+                <input type="checkbox" id="event-check-marriage" name="EventsAttending" value="Marriage" checked>
+                <span class="event-check-content">
+                  <span class="check-box" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="3 8.5 6.5 12 13 4"></polyline>
+                    </svg>
+                  </span>
+                  <span class="event-icon" aria-hidden="true">💍</span>
+                  <span class="event-details">
+                    <span class="event-name" id="rsvp-event-2-title">Marriage</span>
+                    <span class="event-sub" id="rsvp-event-2-sub">Sun, Nov 22 · Muhurtham 9:30 AM</span>
+                  </span>
+                </span>
+              </label>
+
+              <label class="event-check-card" for="event-check-satyanarayana">
+                <input type="checkbox" id="event-check-satyanarayana" name="EventsAttending" value="Satyanarayana Vratam" checked>
+                <span class="event-check-content">
+                  <span class="check-box" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="3 8.5 6.5 12 13 4"></polyline>
+                    </svg>
+                  </span>
+                  <span class="event-icon" aria-hidden="true">🪔</span>
+                  <span class="event-details">
+                    <span class="event-name" id="rsvp-event-3-title">Satyanarayana Vratam</span>
+                    <span class="event-sub" id="rsvp-event-3-sub">Mon, Nov 23 · Auspicious Puja 10:00 AM</span>
+                  </span>
+                </span>
+              </label>
+            </div>
+            <p class="field-error" id="events-error" hidden>Please select at least one event you will attend.</p>
+          </div>
+
           <div class="field" id="party-field">
             <label for="guests">Number attending, including you</label>
             <input type="number" id="guests" name="Guests" min="1" max="20" value="1" required>
