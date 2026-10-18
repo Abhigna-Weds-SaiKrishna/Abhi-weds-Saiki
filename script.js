@@ -106,7 +106,7 @@ const WEDDING_CONFIG = {
     {
       id: 'satyanarayana-vratam',
       badge: 'Post-Wedding Puja',
-      title: 'Satyanarayana Vratam',
+      title: 'Satyanarayana Swami Vratam',
       timeDetail: 'Monday, Nov 23, 2026<br>Auspicious Puja · 5:00 AM',
       actionText: 'Seek divine blessings ↓',
       locationHeading: 'Liberty Hill, TX',
