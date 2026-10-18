@@ -78,7 +78,7 @@ const WEDDING_CONFIG = {
       pelliKoduku: {
         badge: "Groom's Ceremony",
         title: "Pelli Koduku",
-        timeDetail: "Friday, Nov 20, 2026<br>Morning · 8:30 AM",
+        timeDetail: "Saturday, Nov 21, 2026<br>Evening · 5:30 PM",
         locationHeading: "Groom’s Residence",
         locationAddress: "309 Redonda Dr<br>Liberty Hill, Texas",
         mapsUrl: "https://www.google.com/maps/search/?api=1&query=309+Redonda+Dr+Liberty+Hill+TX"
@@ -87,7 +87,7 @@ const WEDDING_CONFIG = {
       pelliKuturu: {
         badge: "Bride's Ceremony",
         title: "Pelli Kuturu",
-        timeDetail: "Friday, Nov 20, 2026<br>Morning · 10:00 AM",
+        timeDetail: "Saturday, Nov 21, 2026<br>Evening · 6:30 PM",
         locationHeading: "Bride’s Residence",
         locationAddress: "309 Redonda Dr<br>Liberty Hill, Texas",
         mapsUrl: "https://www.google.com/maps/search/?api=1&query=309+Redonda+Dr+Liberty+Hill+TX"
@@ -97,7 +97,7 @@ const WEDDING_CONFIG = {
       id: 'marriage',
       badge: 'The Auspicious Wedding',
       title: 'Marriage',
-      timeDetail: 'Sunday, Nov 22, 2026<br>Muhurtham · 9:30 AM',
+      timeDetail: 'Sunday, Nov 22, 2026<br>Muhurtham · 9:22 AM',
       actionText: 'Join our celebration ↓',
       locationHeading: 'Liberty Hill, TX',
       locationAddress: '309 Redonda Dr<br>Liberty Hill, Texas',
@@ -107,7 +107,7 @@ const WEDDING_CONFIG = {
       id: 'satyanarayana-vratam',
       badge: 'Post-Wedding Puja',
       title: 'Satyanarayana Vratam',
-      timeDetail: 'Monday, Nov 23, 2026<br>Auspicious Puja · 10:00 AM',
+      timeDetail: 'Monday, Nov 23, 2026<br>Auspicious Puja · 5:00 AM',
       actionText: 'Seek divine blessings ↓',
       locationHeading: 'Liberty Hill, TX',
       locationAddress: '309 Redonda Dr<br>Liberty Hill, Texas',
@@ -341,22 +341,22 @@ function applyWeddingConfig() {
 // Function to spawn floating emojis
 function triggerEmojiBurst(isAttending) {
   const c = WEDDING_CONFIG;
-  const emojis = isAttending 
+  const emojis = isAttending
     ? (c.emojis && c.emojis.attending ? c.emojis.attending : ['🎉', '💖', '✨', '🥳', '💃', '🕺', '🥂', '🎊'])
     : (c.emojis && c.emojis.cannotCome ? c.emojis.cannotCome : ['😢', '😭', '🥺', '💔', '😞', '😔', '😿', '😥']);
-  
+
   const burstCount = 35;
 
   for (let i = 0; i < burstCount; i++) {
     const el = document.createElement('div');
     el.className = 'emoji-burst';
     el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    
+
     el.style.left = Math.random() * 100 + 'vw';
     el.style.fontSize = (Math.random() * 24 + 16) + 'px';
     el.style.animationDuration = (Math.random() * 1.5 + 1.5) + 's';
     el.style.animationDelay = (Math.random() * 0.4) + 's';
-    
+
     const drift = (Math.random() - 0.5) * 300 + 'px';
     const rot = (Math.random() - 0.5) * 360 + 'deg';
     el.style.setProperty('--drift', drift);
@@ -383,7 +383,7 @@ function updateSelectAllButtonText() {
 document.querySelectorAll('input[name="Attending"]').forEach(radio => {
   radio.addEventListener('change', () => {
     const isAttending = radio.value === 'Bride Side' || radio.value === 'Groom Side';
-    
+
     triggerEmojiBurst(isAttending);
 
     const partyField = $('party-field');
