@@ -6,7 +6,10 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#f9f1e2">
   <title>Sai Krishna & Abhigna · Wedding Celebration</title>
-  <link rel="stylesheet" href="style.css?v=20261018-3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=20261021-4">
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"></div>
@@ -140,15 +143,47 @@
       <div class="wrap">
         <div class="opening">
           <div>
-            <p class="eyebrow" id="hero-eyebrow">Let the celebration begin</p>
-            <p class="lede" id="hero-lede-1">With divine blessings &amp; the love of our families</p>
-            <h1 id="hero-couple-heading">Sai Krishna<span>&amp;</span>Abhigna</h1>
-            <p class="lede" id="hero-lede-2">A little tradition, a lot of joy,<br>and a lifetime of togetherness.</p>
+            <p class="eyebrow" id="hero-eyebrow">LET THE CELEBRATION BEGIN</p>
+
+            <div class="hero-couple-block">
+              <!-- Groom -->
+              <div class="hero-person groom">
+                <h1 class="hero-name" id="hero-groom-name" style="font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif; font-style: italic; color: var(--wine);">Sai Krishna</h1>
+                <p class="hero-lineage"><span class="lineage-prefix" id="hero-groom-prefix">S/O</span> <span class="lineage-names" id="hero-groom-parents">Mutyala Ravindranath &amp; Krishnaveni</span></p>
+              </div>
+
+              <!-- Golden Ampersand Divider -->
+              <div class="hero-amp-divider" aria-hidden="true">
+                <span class="amp-line"></span>
+                <span class="amp-symbol">&amp;</span>
+                <span class="amp-line"></span>
+              </div>
+
+              <!-- Bride -->
+              <div class="hero-person bride">
+                <h1 class="hero-name" id="hero-bride-name" style="font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif; font-style: italic; color: var(--wine);">Abhigna</h1>
+                <p class="hero-lineage"><span class="lineage-prefix" id="hero-bride-prefix">D/O</span> <span class="lineage-names" id="hero-bride-parents">Thammana Venkateswara Rao &amp; Anitha</span></p>
+              </div>
+            </div>
+
+            <!-- Auspicious Lotus Crest -->
+            <div class="hero-lotus-motif" aria-hidden="true">
+              <svg viewBox="0 0 54 30" width="38" height="20" fill="none" stroke="#b88a44" stroke-width="1.5">
+                <path d="M27 4 C24 13 18 19 6 21 C14 24 22 22 27 27 C32 22 40 24 48 21 C36 19 30 13 27 4 Z" fill="rgba(216, 170, 78, 0.1)"/>
+                <path d="M27 11 C22 17 17 21 11 23 M27 11 C32 17 37 21 43 23"/>
+                <circle cx="27" cy="15" r="1.6" fill="#b88a44"/>
+              </svg>
+            </div>
+
+            <p class="lede" id="hero-lede-1">With divine grace and the blessings of our families,<br>we warmly invite you to be part of our<br>wedding celebrations.</p>
             <p class="date" id="hero-date">SUNDAY · NOVEMBER 22, 2026</p>
             <div class="actions">
               <a class="button" href="#rsvp" data-scroll="#rsvp">RSVP with love <span aria-hidden="true">↓</span></a>
               <a class="button secondary" id="gcal-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sai+Krishna+%26+Abhigna+Wedding&dates=20261122T153000Z/20261122T203000Z&details=Join+us+to+celebrate+the+wedding+of+Sai+Krishna+and+Abhigna.&location=309+Redonda+Dr,+Liberty+Hill,+TX" target="_blank" rel="noopener noreferrer">Save the date ↗</a>
             </div>
+
+            <h1 id="hero-couple-heading" hidden>Sai Krishna<span>&amp;</span>Abhigna</h1>
+            <p class="lede" id="hero-lede-2" hidden></p>
           </div>
 
           <!-- HERO ART: Rich Maroon Mandap Backdrop + Lord Ganesha (Left) + Lord Venkateswara (Right) + Groom & Bride (Center) -->
@@ -503,17 +538,11 @@
               <use href="#lamp" transform="translate(178 348) scale(.62)"/>
               <use href="#lamp" transform="translate(568 348) scale(.62)"/>
             </svg>
-            <p class="caption" id="hero-caption">With the divine blessings of Sri Ganesha &amp; Sri Venkateswara</p>
           </div>
         </div>
 
         <!-- WEDDING CELEBRATIONS & CEREMONIES (3 EVENT BLOCKS) -->
         <div id="events" class="events-container">
-          <div class="events-header">
-            <p class="eyebrow" id="events-eyebrow">Celebrations &amp; Ceremonies</p>
-            <h2 id="events-title">Auspicious Occasions</h2>
-          </div>
-
           <!-- BLOCK 1: PRE-WEDDING CEREMONY (SEPARATE PELLI KODUKU & PELLI KUTURU WITH DIVIDING LINE & SEPARATE CARTOONS) -->
           <div class="details prewedding-split-card" id="event-block-1">
             <!-- GROOM'S SIDE: PELLI KODUKU -->
@@ -656,11 +685,11 @@
             </div>
           </div>
 
-          <!-- BLOCK 2: MARRIAGE -->
+          <!-- BLOCK 2: WEDDING -->
           <div class="details" id="event-block-2">
             <div>
-              <span class="event-badge" id="event-2-badge">The Auspicious Wedding</span>
-              <h2 id="event-2-title">Marriage</h2>
+              <span class="event-badge" id="event-2-badge">The Wedding</span>
+              <h2 id="event-2-title">Wedding</h2>
               <p id="event-2-time">Sunday, Nov 22, 2026<br>Muhurtham · 9:22 AM</p>
               <a class="textlink" id="event-2-action" href="#rsvp" data-scroll="#rsvp">Join our celebration ↓</a>
             </div>
@@ -907,24 +936,17 @@
             <label>Will you be joining us?</label>
             <div class="radio-group">
               <label class="radio-card">
-                <input type="radio" name="Attending" value="Bride Side" required>
+                <input type="radio" name="Attending" value="Yes" required>
                 <span class="card-content">
-                  <span class="icon" aria-hidden="true">💃</span>
-                  <span class="text" id="rsvp-bride-label">Yes, Team Bride (Abhigna's Side)!</span>
-                </span>
-              </label>
-              <label class="radio-card">
-                <input type="radio" name="Attending" value="Groom Side" required>
-                <span class="card-content">
-                  <span class="icon" aria-hidden="true">🕺</span>
-                  <span class="text" id="rsvp-groom-label">Yes, Team Groom (Sai Krishna's Side)!</span>
+                  <span class="icon" aria-hidden="true">🎉</span>
+                  <span class="text" id="rsvp-yes-label">Yes, will be there!</span>
                 </span>
               </label>
               <label class="radio-card">
                 <input type="radio" name="Attending" value="No">
                 <span class="card-content">
                   <span class="icon" aria-hidden="true" id="rsvp-decline-icon">🥺</span>
-                  <span class="text" id="rsvp-decline-label">Celebrating from the couch (Cannot make it)</span>
+                  <span class="text" id="rsvp-decline-label">No, cannot make it</span>
                 </span>
               </label>
             </div>
@@ -971,7 +993,7 @@
               </label>
 
               <label class="event-check-card" for="event-check-marriage">
-                <input type="checkbox" id="event-check-marriage" name="EventsAttending" value="Marriage" checked>
+                <input type="checkbox" id="event-check-marriage" name="EventsAttending" value="Wedding" checked>
                 <span class="event-check-content">
                   <span class="check-box" aria-hidden="true">
                     <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
@@ -980,7 +1002,7 @@
                   </span>
                   <span class="event-icon" aria-hidden="true">💍</span>
                   <span class="event-details">
-                    <span class="event-name" id="rsvp-event-2-title">Marriage</span>
+                    <span class="event-name" id="rsvp-event-2-title">Wedding</span>
                     <span class="event-sub" id="rsvp-event-2-sub">Sun, Nov 22 · Muhurtham 9:22 AM</span>
                   </span>
                 </span>

@@ -7,7 +7,11 @@ const WEDDING_CONFIG = {
   // Couple details
   couple: {
     groom: 'Sai Krishna',
+    groomPrefix: 'S/O',
+    groomParents: 'Mutyala Ravindranath & Krishnaveni',
     bride: 'Abhigna',
+    bridePrefix: 'D/O',
+    brideParents: 'Thammana Venkateswara Rao & Anitha',
     initials: 'S & A'
   },
 
@@ -27,7 +31,7 @@ const WEDDING_CONFIG = {
 
   // Venue & Location
   location: {
-    cityState: 'Liberty Hill, TX',
+    cityState: 'Liberty Hill, Texas',
     addressHtml: '309 Redonda Dr<br>Liberty Hill, Texas',
     addressPlain: '309 Redonda Dr, Liberty Hill, TX',
     mapsUrl: 'https://www.google.com/maps/search/?api=1&query=309+Redonda+Dr+Liberty+Hill+TX'
@@ -38,14 +42,14 @@ const WEDDING_CONFIG = {
     pageTitle: 'Sai Krishna & Abhigna · Wedding Celebration',
 
     // Hero Section
-    heroEyebrow: 'Let the celebration begin',
-    heroLede1: 'With divine blessings & the love of our families',
+    heroEyebrow: 'LET THE CELEBRATION BEGIN',
+    heroLede1: 'With divine grace and the blessings of our families,<br>we warmly invite you to be part of our<br>wedding celebrations.',
     heroLede2: 'A little tradition, a lot of joy,<br>and a lifetime of togetherness.',
-    heroCaption: 'With the divine blessings of Sri Ganesha & Sri Venkateswara',
+    heroCaption: '',
 
     // Events / Celebrations Section
-    eventsEyebrow: 'Celebrations &amp; Ceremonies',
-    eventsTitle: 'Auspicious Occasions',
+    eventsEyebrow: '',
+    eventsTitle: '',
 
     // Details Section
     detailsDateEyebrow: 'The auspicious day',
@@ -56,9 +60,8 @@ const WEDDING_CONFIG = {
     rsvpEyebrow: 'Come for the wedding, stay for the memories',
     rsvpTitle: 'A seat saved<br>with love.',
     rsvpDescription: 'We would love to celebrate this beautiful beginning with you. Let us know if you can join us.',
-    rsvpTeamBride: "Yes, Team Bride (Abhigna's Side)!",
-    rsvpTeamGroom: "Yes, Team Groom (Sai Krishna's Side)!",
-    rsvpDecline: 'Celebrating from the couch (Cannot make it)',
+    rsvpYes: 'Yes, will be there!',
+    rsvpDecline: 'No, cannot make it',
     rsvpDeclineIcon: '🥺',
     rsvpEventsLabel: 'Which celebrations will you attend?',
     rsvpEventsSubtext: "Choose all events you'll be celebrating with us:",
@@ -86,7 +89,7 @@ const WEDDING_CONFIG = {
       // Pelli Kuturu on another side (Bride)
       pelliKuturu: {
         badge: "Bride's Ceremony",
-        title: "Pelli Kuturu",
+        title: "Pelli Kuthuru",
         timeDetail: "Saturday, Nov 21, 2026<br>Evening · 6:30 PM",
         locationHeading: "Bride’s Residence",
         locationAddress: "309 Redonda Dr<br>Liberty Hill, Texas",
@@ -95,8 +98,8 @@ const WEDDING_CONFIG = {
     },
     {
       id: 'marriage',
-      badge: 'The Auspicious Wedding',
-      title: 'Marriage',
+      badge: 'The Wedding',
+      title: 'Wedding',
       timeDetail: 'Sunday, Nov 22, 2026<br>Muhurtham · 9:22 AM',
       actionText: 'Join our celebration ↓',
       locationHeading: 'Liberty Hill, TX',
@@ -162,6 +165,24 @@ function applyWeddingConfig() {
   const heroEyebrow = $('hero-eyebrow');
   if (heroEyebrow && c.texts) heroEyebrow.innerHTML = c.texts.heroEyebrow;
 
+  const heroGroomName = $('hero-groom-name');
+  if (heroGroomName && c.couple) heroGroomName.textContent = c.couple.groom;
+
+  const heroGroomPrefix = $('hero-groom-prefix');
+  if (heroGroomPrefix && c.couple) heroGroomPrefix.textContent = c.couple.groomPrefix || 'S/O';
+
+  const heroGroomParents = $('hero-groom-parents');
+  if (heroGroomParents && c.couple) heroGroomParents.textContent = c.couple.groomParents;
+
+  const heroBrideName = $('hero-bride-name');
+  if (heroBrideName && c.couple) heroBrideName.textContent = c.couple.bride;
+
+  const heroBridePrefix = $('hero-bride-prefix');
+  if (heroBridePrefix && c.couple) heroBridePrefix.textContent = c.couple.bridePrefix || 'D/O';
+
+  const heroBrideParents = $('hero-bride-parents');
+  if (heroBrideParents && c.couple) heroBrideParents.textContent = c.couple.brideParents;
+
   const heroLede1 = $('hero-lede-1');
   if (heroLede1 && c.texts) heroLede1.innerHTML = c.texts.heroLede1;
 
@@ -175,6 +196,9 @@ function applyWeddingConfig() {
 
   const heroDate = $('hero-date');
   if (heroDate && c.date) heroDate.textContent = c.date.heroBadge;
+
+  const heroLocation = $('hero-location');
+  if (heroLocation && c.location) heroLocation.textContent = c.location.cityState;
 
   const heroCaption = $('hero-caption');
   if (heroCaption && c.texts) heroCaption.innerHTML = c.texts.heroCaption;
@@ -282,14 +306,11 @@ function applyWeddingConfig() {
   const rsvpDesc = $('rsvp-desc');
   if (rsvpDesc && c.texts) rsvpDesc.innerHTML = c.texts.rsvpDescription;
 
-  const rsvpBrideLabel = $('rsvp-bride-label');
-  if (rsvpBrideLabel && c.texts) rsvpBrideLabel.textContent = c.texts.rsvpTeamBride;
-
-  const rsvpGroomLabel = $('rsvp-groom-label');
-  if (rsvpGroomLabel && c.texts) rsvpGroomLabel.textContent = c.texts.rsvpTeamGroom;
+  const rsvpYesLabel = $('rsvp-yes-label');
+  if (rsvpYesLabel && c.texts && c.texts.rsvpYes) rsvpYesLabel.textContent = c.texts.rsvpYes;
 
   const rsvpDeclineLabel = $('rsvp-decline-label');
-  if (rsvpDeclineLabel && c.texts) rsvpDeclineLabel.textContent = c.texts.rsvpDecline;
+  if (rsvpDeclineLabel && c.texts && c.texts.rsvpDecline) rsvpDeclineLabel.textContent = c.texts.rsvpDecline;
 
   const rsvpDeclineIcon = $('rsvp-decline-icon');
   if (rsvpDeclineIcon && c.texts && c.texts.rsvpDeclineIcon) {
@@ -382,7 +403,7 @@ function updateSelectAllButtonText() {
 // Watch for radio button changes
 document.querySelectorAll('input[name="Attending"]').forEach(radio => {
   radio.addEventListener('change', () => {
-    const isAttending = radio.value === 'Bride Side' || radio.value === 'Groom Side';
+    const isAttending = radio.value === 'Yes' || radio.value === 'Bride Side' || radio.value === 'Groom Side';
 
     triggerEmojiBurst(isAttending);
 
@@ -396,23 +417,18 @@ document.querySelectorAll('input[name="Attending"]').forEach(radio => {
       guests.required = isAttending;
     }
 
-    // Smart pre-select based on team selected
+    // Default select all events when Yes is chosen
     if (isAttending) {
       const pkCheck = $('event-check-pelli-koduku');
       const pkuCheck = $('event-check-pelli-kuturu');
       const marCheck = $('event-check-marriage');
       const satCheck = $('event-check-satyanarayana');
 
+      if (pkCheck) pkCheck.checked = true;
+      if (pkuCheck) pkuCheck.checked = true;
       if (marCheck) marCheck.checked = true;
       if (satCheck) satCheck.checked = true;
 
-      if (radio.value === 'Bride Side') {
-        if (pkuCheck) pkuCheck.checked = true;
-        if (pkCheck) pkCheck.checked = false;
-      } else if (radio.value === 'Groom Side') {
-        if (pkCheck) pkCheck.checked = true;
-        if (pkuCheck) pkuCheck.checked = false;
-      }
       const eventsError = $('events-error');
       if (eventsError) eventsError.hidden = true;
       updateSelectAllButtonText();
@@ -513,7 +529,7 @@ if (rsvpForm) {
 
     const attendingInput = document.querySelector('input[name="Attending"]:checked');
     const attendingVal = attendingInput ? attendingInput.value : '';
-    const isAttending = attendingVal === 'Bride Side' || attendingVal === 'Groom Side';
+    const isAttending = attendingVal === 'Yes' || attendingVal === 'Bride Side' || attendingVal === 'Groom Side';
 
     let selectedEvents = [];
     if (isAttending) {
