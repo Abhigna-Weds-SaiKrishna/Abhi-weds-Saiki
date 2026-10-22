@@ -72,30 +72,8 @@ const WEDDING_CONFIG = {
     footerSubtext: 'MADE WITH LOVE'
   },
 
-  // 3 Wedding Events (Pre-Wedding, Marriage, Satyanarayana Vratam)
+  // 2 Wedding Events (Marriage, Satyanarayana Vratam)
   events: [
-    {
-      id: 'pre-wedding',
-      badge: 'Pre-Wedding Ceremony',
-      // Pelli Koduku on one side (Groom)
-      pelliKoduku: {
-        badge: "Groom's Ceremony",
-        title: "Pelli Koduku",
-        timeDetail: "Saturday, Nov 21, 2026<br>Evening · 5:30 PM",
-        locationHeading: "Groom’s Residence",
-        locationAddress: "309 Redonda Dr<br>Liberty Hill, Texas",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=309+Redonda+Dr+Liberty+Hill+TX"
-      },
-      // Pelli Kuturu on another side (Bride)
-      pelliKuturu: {
-        badge: "Bride's Ceremony",
-        title: "Pelli Kuthuru",
-        timeDetail: "Saturday, Nov 21, 2026<br>Evening · 6:30 PM",
-        locationHeading: "Bride’s Residence",
-        locationAddress: "309 Redonda Dr<br>Liberty Hill, Texas",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=309+Redonda+Dr+Liberty+Hill+TX"
-      }
-    },
     {
       id: 'marriage',
       badge: 'The Wedding',
@@ -223,31 +201,8 @@ function applyWeddingConfig() {
   if (eventsTitle && c.texts && c.texts.eventsTitle) eventsTitle.innerHTML = c.texts.eventsTitle;
 
   if (c.events && Array.isArray(c.events)) {
-    // 1. Pre-Wedding Block (Pelli Koduku on one side, Pelli Kuturu on another side)
-    const ev1 = c.events[0];
-    if (ev1) {
-      if (ev1.pelliKoduku) {
-        const pk = ev1.pelliKoduku;
-        const b = $('event-1-badge'); if (b && pk.badge) b.textContent = pk.badge;
-        const t = $('event-1-title'); if (t && pk.title) t.textContent = pk.title;
-        const tm = $('event-1-time'); if (tm && pk.timeDetail) tm.innerHTML = pk.timeDetail;
-        const lh = $('event-1-location'); if (lh && pk.locationHeading) lh.textContent = pk.locationHeading;
-        const la = $('event-1-address'); if (la && pk.locationAddress) la.innerHTML = pk.locationAddress;
-        const m = $('event-1-map'); if (m && pk.mapsUrl) m.href = pk.mapsUrl;
-      }
-      if (ev1.pelliKuturu) {
-        const pku = ev1.pelliKuturu;
-        const b = $('event-1b-badge'); if (b && pku.badge) b.textContent = pku.badge;
-        const t = $('event-1b-title'); if (t && pku.title) t.textContent = pku.title;
-        const tm = $('event-1b-time'); if (tm && pku.timeDetail) tm.innerHTML = pku.timeDetail;
-        const lh = $('event-1b-location'); if (lh && pku.locationHeading) lh.textContent = pku.locationHeading;
-        const la = $('event-1b-address'); if (la && pku.locationAddress) la.innerHTML = pku.locationAddress;
-        const m = $('event-1b-map'); if (m && pku.mapsUrl) m.href = pku.mapsUrl;
-      }
-    }
-
-    // 2. Marriage
-    const ev2 = c.events[1];
+    // 1. Marriage
+    const ev2 = c.events.find(e => e.id === 'marriage') || c.events[0];
     if (ev2) {
       const b = $('event-2-badge'); if (b && ev2.badge) b.textContent = ev2.badge;
       const t = $('event-2-title'); if (t && ev2.title) t.textContent = ev2.title;
@@ -258,8 +213,8 @@ function applyWeddingConfig() {
       const m = $('event-2-map'); if (m && ev2.mapsUrl) m.href = ev2.mapsUrl;
     }
 
-    // 3. Satyanarayana Vratam
-    const ev3 = c.events[2];
+    // 2. Satyanarayana Vratam
+    const ev3 = c.events.find(e => e.id === 'satyanarayana-vratam') || c.events[1];
     if (ev3) {
       const b = $('event-3-badge'); if (b && ev3.badge) b.textContent = ev3.badge;
       const t = $('event-3-title'); if (t && ev3.title) t.textContent = ev3.title;
@@ -327,22 +282,13 @@ function applyWeddingConfig() {
   }
 
   // Bind RSVP events checkbox titles & subtitles from c.events
-  if (c.events && c.events.length >= 3) {
-    const ev1 = c.events[0];
-    if (ev1 && ev1.pelliKoduku) {
-      const t = $('rsvp-event-1-title'); if (t && ev1.pelliKoduku.title) t.textContent = ev1.pelliKoduku.title;
-      const s = $('rsvp-event-1-sub'); if (s && ev1.pelliKoduku.timeDetail) s.textContent = ev1.pelliKoduku.timeDetail.replace(/<br>/g, ' · ') + " (Groom's Ceremony)";
-    }
-    if (ev1 && ev1.pelliKuturu) {
-      const t = $('rsvp-event-1b-title'); if (t && ev1.pelliKuturu.title) t.textContent = ev1.pelliKuturu.title;
-      const s = $('rsvp-event-1b-sub'); if (s && ev1.pelliKuturu.timeDetail) s.textContent = ev1.pelliKuturu.timeDetail.replace(/<br>/g, ' · ') + " (Bride's Ceremony)";
-    }
-    const ev2 = c.events[1];
+  if (c.events && Array.isArray(c.events)) {
+    const ev2 = c.events.find(e => e.id === 'marriage') || c.events[0];
     if (ev2) {
       const t = $('rsvp-event-2-title'); if (t && ev2.title) t.textContent = ev2.title;
       const s = $('rsvp-event-2-sub'); if (s && ev2.timeDetail) s.textContent = ev2.timeDetail.replace(/<br>/g, ' · ');
     }
-    const ev3 = c.events[2];
+    const ev3 = c.events.find(e => e.id === 'satyanarayana-vratam') || c.events[1];
     if (ev3) {
       const t = $('rsvp-event-3-title'); if (t && ev3.title) t.textContent = ev3.title;
       const s = $('rsvp-event-3-sub'); if (s && ev3.timeDetail) s.textContent = ev3.timeDetail.replace(/<br>/g, ' · ');
@@ -419,13 +365,9 @@ document.querySelectorAll('input[name="Attending"]').forEach(radio => {
 
     // Default select all events when Yes is chosen
     if (isAttending) {
-      const pkCheck = $('event-check-pelli-koduku');
-      const pkuCheck = $('event-check-pelli-kuturu');
       const marCheck = $('event-check-marriage');
       const satCheck = $('event-check-satyanarayana');
 
-      if (pkCheck) pkCheck.checked = true;
-      if (pkuCheck) pkuCheck.checked = true;
       if (marCheck) marCheck.checked = true;
       if (satCheck) satCheck.checked = true;
 
