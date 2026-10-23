@@ -21,20 +21,20 @@ const WEDDING_CONFIG = {
     dayMonth: 'November 22',
     year: '2026',
     dayOfWeek: 'Sunday',
-    muhurtham: 'Muhurtham · 9:30 AM',
-    timeSummary: 'Sunday, 2026<br>Muhurtham · 9:30 AM',
+    muhurtham: 'Muhurtham · 9:22 AM',
+    timeSummary: 'Sunday, 2026<br>Muhurtham · 9:22 AM',
     footerDate: '22 NOVEMBER 2026',
     // ISO 8601 UTC strings for Google Calendar & .ics files
-    isoStart: '20261122T153000Z',
+    isoStart: '20261122T133000Z',
     isoEnd: '20261122T203000Z'
   },
 
   // Venue & Location
   location: {
-    cityState: 'Liberty Hill, Texas',
-    addressHtml: '309 Redonda Dr<br>Liberty Hill, Texas',
-    addressPlain: '309 Redonda Dr, Liberty Hill, TX',
-    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=309+Redonda+Dr+Liberty+Hill+TX'
+    cityState: 'Round Rock, Texas',
+    addressHtml: '1209 I 35 N Frontage Rd<br>Round Rock, Texas 78664',
+    addressPlain: '1209 I 35 N Frontage Rd, Round Rock, TX 78664',
+    mapsUrl: 'https://maps.app.goo.gl/WfE8yPbkXVZMxpB6A'
   },
 
   // Story & Section Headings/Texts
@@ -74,11 +74,11 @@ const WEDDING_CONFIG = {
       id: 'marriage',
       badge: 'The Wedding',
       title: 'Wedding',
-      timeDetail: 'Sunday, Nov 22, 2026<br>Muhurtham · 9:22 AM',
+      timeDetail: 'Sunday, Nov 22, 2026<br>Starts at 7:30 AM<br>Muhurtham · 9:22 AM<br>Breakfast and lunch follows',
       actionText: 'Join our celebration ↓',
-      locationHeading: 'Liberty Hill, TX',
-      locationAddress: '309 Redonda Dr<br>Liberty Hill, Texas',
-      mapsUrl: 'https://www.google.com/maps/search/?api=1&query=309+Redonda+Dr+Liberty+Hill+TX'
+      locationHeading: 'Round Rock, TX',
+      locationAddress: '1209 I 35 N Frontage Rd<br>Round Rock, Texas 78664',
+      mapsUrl: 'https://maps.app.goo.gl/WfE8yPbkXVZMxpB6A'
     },
     {
       id: 'satyanarayana-vratam',
@@ -101,7 +101,7 @@ const WEDDING_CONFIG = {
   // Calendar Event (.ics download & Google Calendar)
   calendar: {
     title: 'Sai Krishna & Abhigna Wedding',
-    description: 'Join us to celebrate the wedding of Sai Krishna and Abhigna (Muhurtham at 9:30 AM CST).',
+    description: 'Join us to celebrate the wedding of Sai Krishna and Abhigna (Starts at 7:30 AM, Muhurtham at 9:22 AM). Breakfast and lunch follows.',
     icsFilename: 'Sai-Krishna-Abhigna-Wedding.ics',
     uid: 'sai-abhigna-20261122@wedding'
   },
