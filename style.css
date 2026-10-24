@@ -1012,6 +1012,8 @@ footer small {
   gap: 8px;
   font-size: 13px;
   white-space: nowrap;
+  max-width: 95vw;
+  overflow-x: auto;
 }
 .version-switcher .lbl {
   color: #f7d58a;

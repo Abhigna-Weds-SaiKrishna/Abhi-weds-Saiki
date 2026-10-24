@@ -8,10 +8,10 @@ const WEDDING_CONFIG = {
   couple: {
     groom: 'Sai Krishna',
     groomPrefix: 'S/O',
-    groomParents: 'Mutyala Ravindranath & Krishnaveni',
+    groomParents: 'Ravindranath & Krishnaveni',
     bride: 'Abhigna',
     bridePrefix: 'D/O',
-    brideParents: 'Thammana Venkateswara Rao & Anitha',
+    brideParents: 'Venkateswara Rao & Anitha',
     initials: 'S & A'
   },
 
@@ -32,8 +32,8 @@ const WEDDING_CONFIG = {
   // Venue & Location
   location: {
     cityState: 'Round Rock, Texas',
-    addressHtml: '1209 I 35 N Frontage Rd<br>Round Rock, Texas 78664',
-    addressPlain: '1209 I 35 N Frontage Rd, Round Rock, TX 78664',
+    addressHtml: 'Round Rock Conference Center and Banquet Hall at Wingate by Wyndham<br>1209 I 35 N Frontage Rd<br>Round Rock, Texas 78664',
+    addressPlain: 'Round Rock Conference Center and Banquet Hall at Wingate by Wyndham, 1209 I 35 N Frontage Rd, Round Rock, TX 78664',
     mapsUrl: 'https://maps.app.goo.gl/WfE8yPbkXVZMxpB6A'
   },
 
@@ -77,7 +77,7 @@ const WEDDING_CONFIG = {
       timeDetail: 'Sunday, Nov 22, 2026<br>Starts at 7:30 AM<br>Muhurtham · 9:22 AM<br>Breakfast and lunch follows',
       actionText: 'Join our celebration ↓',
       locationHeading: 'Round Rock, TX',
-      locationAddress: '1209 I 35 N Frontage Rd<br>Round Rock, Texas 78664',
+      locationAddress: 'Round Rock Conference Center and Banquet Hall at Wingate by Wyndham<br>1209 I 35 N Frontage Rd<br>Round Rock, Texas 78664',
       mapsUrl: 'https://maps.app.goo.gl/WfE8yPbkXVZMxpB6A'
     },
     {

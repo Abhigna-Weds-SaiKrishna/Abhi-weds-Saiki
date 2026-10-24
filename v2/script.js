@@ -12,7 +12,7 @@ const V2_CONFIG = {
     muhurtham: 'Muhurtham · 9:22 AM'
   },
   location: {
-    wedding: '1209 I 35 N Frontage Rd, Round Rock, TX 78664',
+    wedding: 'Round Rock Conference Center and Banquet Hall at Wingate by Wyndham, 1209 I 35 N Frontage Rd, Round Rock, TX 78664',
     puja: '309 Redonda Dr, Liberty Hill, Texas'
   },
   googleScriptUrl: 'https://script.google.com/macros/s/AKfycbw1HL5bZfJ7vfG4RNAKiRjrdVKb5EcL1Ywbejre-Lo5vPsQtag6STAz439pAFI9gDyz/exec'

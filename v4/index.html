@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Sai Krishna &amp; Abhigna · 22 November 2026</title>
+  <meta name="description" content="Together with their families, Sai Krishna & Abhigna request the honour of your presence at their wedding celebration on Sunday, 22 November 2026 at Round Rock Conference Center and Banquet Hall at Wingate by Wyndham, Round Rock, Texas.">
+  <meta name="theme-color" content="#6E1E1A">
+  <meta property="og:title" content="Sai Krishna &amp; Abhigna · 22 November 2026">
+  <meta property="og:description" content="You're invited. Tap to open our wedding invitation.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/wedding.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Marcellus&family=Mukta:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Ambient Petals Canvas -->
+<canvas id="petals" aria-hidden="true"></canvas>
+
+<!-- Floating Theme Version Switcher -->
+<nav class="version-switcher" aria-label="Theme Versions">
+  <a href="../v1/" class="version-chip">V1: Traditional</a>
+  <a href="../v2/" class="version-chip">V2: Scenic Floral</a>
+  <a href="../v3/" class="version-chip">V3: Contemporary</a>
+  <a href="./" class="version-chip active">V4: Royal Gate</a>
+</nav>
+
+<!-- Floating Festive Music Button -->
+<button class="music" id="musicBtn" type="button" aria-pressed="false" aria-label="Play wedding music">
+  <span class="ping" aria-hidden="true"></span>
+  <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span class="slash" aria-hidden="true"></span>
+</button>
+
+<div class="wrap">
+
+  <!-- ===== GATE: Golden Doors 3D Opening ===== -->
+  <div class="gate-stage" id="stage">
+    <img id="baseImg" src="assets/wedding.jpg" width="1000" height="1333"
+         alt="Illustrated South Indian wedding invitation of Sai Krishna and Abhigna, framed by banana leaves, marigolds and a sacred kalash">
+    
+    <div class="gate" id="gate">
+      <div class="door l"><span class="knob"></span></div>
+      <div class="door r"><span class="knob"></span></div>
+      
+      <!-- Hanging Marigold & Mango Leaves Toranam Garland -->
+      <div class="toran" aria-hidden="true">
+        <svg id="toranSvg" viewBox="0 0 480 84" preserveAspectRatio="xMidYMin meet" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="mg" cx="40%" cy="34%"><stop offset="0" stop-color="#FBD24B"/><stop offset="55%" stop-color="#F2A007"/><stop offset="100%" stop-color="#D97A06"/></radialGradient>
+            <radialGradient id="mg2" cx="40%" cy="34%"><stop offset="0" stop-color="#FFE596"/><stop offset="60%" stop-color="#F4B400"/><stop offset="100%" stop-color="#C98415"/></radialGradient>
+            <linearGradient id="lf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6E9A3E"/><stop offset="1" stop-color="#3F6B25"/></linearGradient>
+            <linearGradient id="bell" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7E2A6"/><stop offset="1" stop-color="#B07D1A"/></linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <!-- Golden Medallion Seal -->
+      <button class="seal" id="seal" type="button" aria-label="Open the invitation">
+        <span class="medallion"><span id="monogram">S &amp; A</span></span>
+        <span class="lbl"><span class="tap">✦</span> Tap to open</span>
+      </button>
+    </div>
+
+    <div class="scroll-cue" id="cue">see wedding details ↓</div>
+  </div>
+
+  <!-- ===== NAMES / INVITATION TEXT ===== -->
+  <section class="invite">
+    <blockquote class="quote reveal"><span class="mk">“</span>Two families, one thread — and a lifetime to keep it.<span class="mk">”</span></blockquote>
+    <p class="qattr reveal">Telugu Wedding Celebration</p>
+    
+    <div class="qorn reveal" aria-hidden="true">
+      <span class="ln"></span>
+      <span class="dot"></span>
+      <span class="ln r"></span>
+    </div>
+
+    <div class="names reveal">
+      <span class="n" id="nameA">Sai Krishna</span>
+      <span class="amp">&amp;</span>
+      <span class="n" id="nameB">Abhigna</span>
+    </div>
+
+    <div class="parentage-box reveal">
+      <div><strong>Groom:</strong> Sai Krishna (S/O Ravindranath &amp; Krishnaveni)</div>
+      <div style="margin-top: 4px;"><strong>Bride:</strong> Abhigna (D/O Venkateswara Rao &amp; Anitha)</div>
+    </div>
+
+    <div class="reveal"><span class="tag">#AbhiWedsSaiki</span></div>
+  </section>
+
+  <div class="divider" aria-hidden="true">
+    <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <path d="M10 20 H80" stroke="#B07D1A" stroke-width="1"/>
+      <path d="M120 20 H190" stroke="#B07D1A" stroke-width="1"/>
+      <path d="M100 8 C92 16 92 24 100 32 C108 24 108 16 100 8 Z" fill="#5A7D3C"/>
+      <circle cx="100" cy="20" r="4.5" fill="#E0982A"/>
+      <circle cx="86" cy="20" r="2" fill="#9E2B25"/>
+      <circle cx="114" cy="20" r="2" fill="#9E2B25"/>
+    </svg>
+  </div>
+
+  <!-- ===== MANDAPAM DETAILS PANEL ===== -->
+  <section class="mandap-sec">
+    <div class="mandap reveal">
+      <div class="mandap-veil" aria-hidden="true"></div>
+      <div class="mandap-in">
+        <div class="m-om" aria-hidden="true">ॐ</div>
+        <p class="m-eyebrow">The Sacred Wedding</p>
+        <h2 class="m-title">Muhuratham</h2>
+        <span class="m-rule" aria-hidden="true"></span>
+
+        <!-- Date & Timings -->
+        <div class="m-row">
+          <svg class="m-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="15" rx="2.5"/><path d="M3 10.5h18M8 3v4.2M16 3v4.2"/><g fill="currentColor" stroke="none"><circle cx="8.4" cy="14.6" r="1"/><circle cx="12" cy="14.6" r="1"/><circle cx="15.6" cy="14.6" r="1"/><circle cx="8.4" cy="17.6" r="1"/><circle cx="12" cy="17.6" r="1"/></g></svg>
+          <div class="m-val">Sunday, Nov 22, 2026</div>
+          <div class="m-sub">Starts at 7:30 AM · Muhurtham 9:22 AM</div>
+          <div class="m-sub" style="font-style: italic; color: var(--kumkum);">Breakfast and lunch follows</div>
+        </div>
+
+        <span class="m-rule" aria-hidden="true"></span>
+
+        <!-- Venue -->
+        <div class="m-row">
+          <svg class="m-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.5 7-11.5A7 7 0 0 0 5 9.5C5 15.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.6"/></svg>
+          <div class="m-venue">Round Rock Conference Center and Banquet Hall at Wingate by Wyndham</div>
+          <div class="m-addr">1209 I 35 N Frontage Rd<br>Round Rock, Texas 78664</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mandap-actions">
+      <a class="btn" id="dir" href="https://maps.app.goo.gl/WfE8yPbkXVZMxpB6A" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+        Open Venue in Maps
+      </a>
+    </div>
+
+    <!-- Satyanarayana Puja Card -->
+    <div class="puja-card reveal">
+      <span class="puja-badge">Post-Wedding Blessing</span>
+      <h3>Sri Satyanarayana Swami Vratam</h3>
+      <div class="puja-time">Monday, November 23, 2026 · 5:00 AM</div>
+      <div class="puja-addr">309 Redonda Dr, Liberty Hill, Texas</div>
+    </div>
+  </section>
+
+  <!-- ===== COUNTDOWN TIMER ===== -->
+  <section class="count">
+    <p class="eyebrow">Counting down to the Muhuratham</p>
+    <div class="cd" id="cd">
+      <div class="u"><div class="num" id="d">--</div><div class="lab">Days</div></div>
+      <div class="u"><div class="num" id="h">--</div><div class="lab">Hours</div></div>
+      <div class="u"><div class="num" id="m">--</div><div class="lab">Mins</div></div>
+      <div class="u"><div class="num" id="s">--</div><div class="lab">Secs</div></div>
+    </div>
+  </section>
+
+  <!-- ===== INTERACTIVE TEAM PICKER ===== -->
+  <section class="teams">
+    <div class="sec-head">
+      <p class="eyebrow">A little wedding fun</p>
+      <h2>Whose side are you on?</h2>
+    </div>
+    <p class="teams-lead">Pick your team below to cheer for the bride or the groom!</p>
+    
+    <div class="teams-grid">
+      <!-- Team Bride -->
+      <button class="team team-b" id="teamB" type="button" aria-pressed="false">
+        <div class="team-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+        <div class="team-t">Team Bride</div>
+        <div class="team-n">Abhigna</div>
+      </button>
+
+      <!-- Tug rope with moving knot -->
+      <div class="tug" aria-hidden="true">
+        <div class="tug-rope"></div>
+        <div class="tug-knot" id="knot"></div>
+        <div class="tug-vs">VS</div>
+      </div>
+
+      <!-- Team Groom -->
+      <button class="team team-g" id="teamG" type="button" aria-pressed="false">
+        <div class="team-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="team-t">Team Groom</div>
+        <div class="team-n">Sai Krishna</div>
+      </button>
+    </div>
+
+    <p class="team-result" id="teamResult"></p>
+  </section>
+
+  <!-- ===== RSVP SECTION ===== -->
+  <section class="rsvp" id="rsvp">
+    <h2>Will you join us?</h2>
+    <p class="lead">Kindly reply with your attendance.<br>We can’t wait to celebrate with you!</p>
+    
+    <form class="form" id="rsvpForm">
+      <div class="field">
+        <label for="rn">Your Name *</label>
+        <input id="rn" type="text" placeholder="Enter your full name" required>
+      </div>
+
+      <div class="field">
+        <label>Will you attend?</label>
+        <div class="seg" id="seg">
+          <button type="button" data-v="yes" aria-pressed="true">Joyfully yes</button>
+          <button type="button" class="no" data-v="no" aria-pressed="false">Regretfully no</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="rg">Number of Guests</label>
+        <input id="rg" type="number" min="1" max="10" value="1">
+      </div>
+
+      <div class="field">
+        <label for="rnotes">Notes / Warm Wishes</label>
+        <input id="rnotes" type="text" placeholder="Optional wishes or dietary notes">
+      </div>
+
+      <button class="btn primary-rsvp" id="submitBtn" type="submit">
+        Submit RSVP Online
+      </button>
+
+      <button class="btn wa" id="sendWa" type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.2c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.1.3.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.8.9c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
+        Send RSVP via WhatsApp
+      </button>
+
+      <div id="rsvpStatus" class="status-msg"></div>
+    </form>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="foot">
+    <div class="om">ॐ</div>
+    <p class="bless">With the blessings of our elders<br>and the warmth of your presence.</p>
+    <div class="sig">Sai Krishna &amp; Abhigna</div>
+    <p class="made">#AbhiWedsSaiki · 22 November 2026</p>
+  </footer>
+
+</div>
+
+<!-- Embedded Audio -->
+<audio id="bgm" src="assets/shehnai.mp3" loop preload="auto"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
