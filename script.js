@@ -358,3 +358,49 @@ if (rsvpForm) {
     }
   });
 })();
+
+/* ==========================================================================
+   COUNTDOWN TIMER (Nov 22, 2026, 9:22 AM CST = 15:22 UTC)
+   ========================================================================== */
+(function initCountdownTimer() {
+  const weddingDate = new Date('2026-11-22T15:22:00.000Z').getTime();
+
+  const daysEl = $('timer-days');
+  const hoursEl = $('timer-hours');
+  const minutesEl = $('timer-minutes');
+  const secondsEl = $('timer-seconds');
+
+  if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+  function pad(n) {
+    return n < 10 ? '0' + n : String(n);
+  }
+
+  function update() {
+    const now = Date.now();
+    const diff = weddingDate - now;
+
+    if (diff <= 0) {
+      daysEl.textContent = '00';
+      hoursEl.textContent = '00';
+      minutesEl.textContent = '00';
+      secondsEl.textContent = '00';
+      const note = document.querySelector('.v2-countdown-note');
+      if (note) note.textContent = 'The auspicious celebrations have begun! ✨';
+      return;
+    }
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+
+    daysEl.textContent = pad(d);
+    hoursEl.textContent = pad(h);
+    minutesEl.textContent = pad(m);
+    secondsEl.textContent = pad(s);
+  }
+
+  update();
+  setInterval(update, 1000);
+})();
