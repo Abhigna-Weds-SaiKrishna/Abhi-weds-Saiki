@@ -209,20 +209,20 @@ if (rsvpForm) {
   window.addEventListener('pointerleave', () => { pointer.active = false; }, { passive: true });
   window.addEventListener('touchend', () => { pointer.active = false; }, { passive: true });
 
-  // 100% Rich Radiant Golden Palette (No pink or rose)
+  // Ethereal Radiant Pink & Rose Dust Palette
   const COLORS = [
-    { r: 218, g: 165, b: 32 },   // 24K Goldenrod (#DAA520)
-    { r: 245, g: 183, b: 0 },    // Pure Radiant Gold (#F5B700)
-    { r: 255, g: 215, b: 0 },    // Brilliant Gold (#FFD700)
-    { r: 197, g: 155, b: 75 },   // Antique Temple Gold (#C59B4B)
-    { r: 230, g: 175, b: 35 }    // Warm Honey Gold (#E6AF23)
+    { r: 236, g: 72, b: 127 },   // Radiant Magenta Rose (#EC487F)
+    { r: 244, g: 114, b: 160 },  // Vibrant Rose Pink (#F472A0)
+    { r: 247, g: 143, b: 179 },  // Blossom Pink (#F78FB3)
+    { r: 255, g: 160, b: 190 },  // Soft Rose Quartz (#FFA0BE)
+    { r: 255, g: 182, b: 193 }   // Romantic Blush Pink (#FFB6C1)
   ];
 
   const COUNT = W < 640 ? 45 : 85;
   const particles = [];
 
   for (let i = 0; i < COUNT; i++) {
-    const isStar = Math.random() < 0.45; // 45% golden star twinkles, 55% round gold motes
+    const isStar = Math.random() < 0.45; // 45% pink star twinkles, 55% round pink motes
     const color = COLORS[Math.floor(Math.random() * COLORS.length)];
     particles.push({
       x: Math.random() * W,
@@ -308,8 +308,8 @@ if (rsvpForm) {
         const inner = starR * 0.22;
 
         ctx.fillStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha})`;
-        ctx.shadowColor = `rgba(245, 183, 0, ${alpha * 0.9})`;
-        ctx.shadowBlur = 8;
+        ctx.shadowColor = `rgba(236, 72, 127, ${alpha * 0.9})`;
+        ctx.shadowBlur = 9;
 
         ctx.beginPath();
         ctx.moveTo(0, -starR);
@@ -324,19 +324,19 @@ if (rsvpForm) {
         ctx.closePath();
         ctx.fill();
 
-        // Gleaming bright gold center glint
-        ctx.fillStyle = `rgba(255, 245, 190, ${Math.min(1, alpha * 1.2)})`;
+        // Gleaming bright blush-white center glint
+        ctx.fillStyle = `rgba(255, 245, 250, ${Math.min(1, alpha * 1.25)})`;
         ctx.beginPath();
         ctx.arc(0, 0, inner * 0.8, 0, Math.PI * 2);
         ctx.fill();
 
         ctx.restore();
       } else {
-        // Draw Soft Glowing Round Gold Dust Mote
+        // Draw Soft Glowing Round Pink Dust Mote
         ctx.save();
         ctx.fillStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha})`;
-        ctx.shadowColor = `rgba(235, 178, 40, ${alpha * 0.8})`;
-        ctx.shadowBlur = 6;
+        ctx.shadowColor = `rgba(244, 114, 160, ${alpha * 0.85})`;
+        ctx.shadowBlur = 7;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r * (0.85 + 0.35 * alphaWave), 0, Math.PI * 2);
