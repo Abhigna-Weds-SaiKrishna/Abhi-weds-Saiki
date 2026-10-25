@@ -268,23 +268,46 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 8px 18px;
+  gap: 8px 12px;
   margin-bottom: 3.5%;
+  max-width: 580px;
 }
 
 .v2-meta-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  background: rgba(255, 253, 249, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(197, 155, 75, 0.45);
+  border-radius: 24px;
+  padding: 5px 14px;
+  box-shadow: 0 4px 14px rgba(27, 56, 43, 0.08);
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(15px, 2.1vw, 17.5px);
-  font-weight: 600;
+  font-size: clamp(14px, 2vw, 17px);
+  font-weight: 700;
   color: var(--text-dark);
+  white-space: nowrap;
 }
 
 .v2-meta-badge .icon {
   font-size: 15px;
   line-height: 1;
+}
+
+.v2-meta-sep {
+  color: var(--gold);
+  font-weight: 700;
+  margin: 0 4px;
+}
+
+.v2-desktop-only {
+  display: inline;
+}
+
+.v2-mobile-only {
+  display: none;
 }
 
 .v2-cal-pill-hero {
@@ -794,113 +817,127 @@ select.v2-input {
   }
 
   .v2-hero-content {
-    padding: 20px 14px 10px 14px;
+    padding: 14px 10px 0 10px;
   }
 
   .v2-eyebrow {
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 2px;
     color: #364e43;
-    margin-bottom: 5px;
-  }
-
-  .v2-groom-name {
-    font-size: 38px;
-    font-weight: 700;
-    line-height: 1.1;
     margin-bottom: 2px;
   }
 
+  .v2-groom-name {
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1px;
+  }
+
   .v2-parentage {
-    font-size: 14.5px;
+    font-size: 13.5px;
     font-weight: 500;
-    line-height: 1.4;
-    margin-bottom: 6px;
+    line-height: 1.35;
+    margin-bottom: 3px;
   }
 
   .v2-parentage .label {
-    font-size: 13.5px;
+    font-size: 12.5px;
     color: #3d584c;
     font-weight: 600;
   }
 
   .v2-parentage .names {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     color: #0d2218;
   }
 
   .v2-amp-divider {
-    gap: 10px;
-    margin: 3px auto;
+    gap: 8px;
+    margin: 2px auto;
   }
 
   .v2-amp-divider .amp {
-    font-size: 26px;
+    font-size: 22px;
     color: #b07e2c;
     font-weight: 600;
   }
 
   .v2-bride-name {
-    font-size: 52px;
+    font-size: 46px;
     font-weight: 600;
     line-height: 0.95;
-    margin-bottom: 3px;
+    margin-bottom: 1px;
   }
 
   .v2-sub-crest {
-    margin: 5px 0 5px 0;
+    margin: 3px 0 3px 0;
   }
 
-  .v2-br-desktop {
+  .v2-br-desktop,
+  .v2-desktop-only {
     display: none;
   }
 
+  .v2-mobile-only {
+    display: inline;
+  }
+
   .v2-invitation-text {
-    font-size: 14.5px;
+    font-size: 13.5px;
     font-weight: 600;
     line-height: 1.45;
     color: #12281e;
-    max-width: 275px;
-    margin: 0 auto 10px auto;
+    max-width: 250px;
+    margin: 0 auto 8px auto;
   }
 
   .v2-meta-row {
-    flex-direction: column;
-    gap: 7px;
-    margin-bottom: 12px;
-  }
-
-  .v2-meta-badge {
-    font-size: 15px;
-    font-weight: 600;
-    color: #12281e;
-    justify-content: center;
-  }
-
-  .v2-meta-badge .icon {
-    font-size: 16px;
-  }
-
-  .v2-meta-badge-muhurtham {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
+    margin-bottom: 9px;
+    width: 100%;
+  }
+
+  .v2-meta-badge {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #12281e;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(255, 253, 249, 0.96);
+    box-shadow: 0 3px 10px rgba(27, 56, 43, 0.08);
+    max-width: 95%;
+    white-space: nowrap;
+  }
+
+  .v2-meta-badge .icon {
+    font-size: 13px;
+  }
+
+  .v2-meta-badge-muhurtham {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 5px 14px;
   }
 
   .v2-meta-badge-muhurtham .v2-cal-pill-hero {
     margin-left: 0;
-    font-size: 10.5px;
-    padding: 3px 12px;
+    font-size: 9.5px;
+    padding: 2.5px 9px;
     font-weight: 700;
   }
 
   .v2-btn-rsvp {
-    font-size: 14.5px;
+    font-size: 13.5px;
     font-weight: 700;
-    padding: 10px 26px;
+    padding: 8px 24px;
   }
 
   /* Section cards */
