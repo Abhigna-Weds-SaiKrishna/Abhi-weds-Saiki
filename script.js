@@ -209,29 +209,38 @@ if (rsvpForm) {
   window.addEventListener('pointerleave', () => { pointer.active = false; }, { passive: true });
   window.addEventListener('touchend', () => { pointer.active = false; }, { passive: true });
 
-  // Ethereal Radiant Pink & Rose Dust Palette
+  // Luxurious Harmonious Mix of Radiant Gold and Romantic Pink Dust
   const COLORS = [
-    { r: 236, g: 72, b: 127 },   // Radiant Magenta Rose (#EC487F)
-    { r: 244, g: 114, b: 160 },  // Vibrant Rose Pink (#F472A0)
-    { r: 247, g: 143, b: 179 },  // Blossom Pink (#F78FB3)
-    { r: 255, g: 160, b: 190 },  // Soft Rose Quartz (#FFA0BE)
-    { r: 255, g: 182, b: 193 }   // Romantic Blush Pink (#FFB6C1)
+    // --- Radiant Gold Hues ---
+    { r: 245, g: 183, b: 0, glow: '245, 183, 0', glint: '255, 245, 190' },   // Pure Radiant Gold (#F5B700)
+    { r: 255, g: 215, b: 0, glow: '235, 178, 40', glint: '255, 252, 220' },  // Brilliant 24K Gold (#FFD700)
+    { r: 218, g: 165, b: 32, glow: '218, 165, 32', glint: '255, 245, 190' }, // Warm Goldenrod (#DAA520)
+    { r: 230, g: 175, b: 35, glow: '235, 178, 40', glint: '255, 248, 205' }, // Honey Amber Gold (#E6AF23)
+    { r: 212, g: 160, b: 64, glow: '212, 160, 64', glint: '255, 245, 195' }, // Antique Temple Gold (#D4A040)
+
+    // --- Romantic Pink & Rose Hues ---
+    { r: 236, g: 72, b: 127, glow: '236, 72, 127', glint: '255, 240, 248' }, // Radiant Magenta Rose (#EC487F)
+    { r: 244, g: 114, b: 160, glow: '244, 114, 160', glint: '255, 245, 250' },// Vibrant Rose Pink (#F472A0)
+    { r: 247, g: 143, b: 179, glow: '244, 114, 160', glint: '255, 248, 252' },// Blossom Pink (#F78FB3)
+    { r: 255, g: 160, b: 190, glow: '247, 143, 179', glint: '255, 250, 252' },// Soft Rose Quartz (#FFA0BE)
+    { r: 255, g: 182, b: 193, glow: '244, 114, 160', glint: '255, 250, 252' } // Romantic Blush Pink (#FFB6C1)
   ];
 
-  const COUNT = W < 640 ? 45 : 85;
+  // Increased dust count for an abundant, celebratory atmosphere
+  const COUNT = W < 640 ? 95 : 180;
   const particles = [];
 
   for (let i = 0; i < COUNT; i++) {
-    const isStar = Math.random() < 0.45; // 45% pink star twinkles, 55% round pink motes
+    const isStar = Math.random() < 0.42; // ~42% star twinkles, ~58% round motes
     const color = COLORS[Math.floor(Math.random() * COLORS.length)];
     particles.push({
       x: Math.random() * W,
       y: Math.random() * H,
-      r: isStar ? (2.0 + Math.random() * 2.5) : (1.0 + Math.random() * 2.2),
+      r: isStar ? (2.0 + Math.random() * 2.6) : (1.1 + Math.random() * 2.3),
       isStar: isStar,
       color: color,
-      baseVx: (Math.random() - 0.5) * 0.3,
-      baseVy: -(0.2 + Math.random() * 0.45), // gentle upward float
+      baseVx: (Math.random() - 0.5) * 0.35,
+      baseVy: -(0.18 + Math.random() * 0.48), // gentle upward float
       vx: 0,
       vy: 0,
       phase: Math.random() * Math.PI * 2,
@@ -308,7 +317,7 @@ if (rsvpForm) {
         const inner = starR * 0.22;
 
         ctx.fillStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha})`;
-        ctx.shadowColor = `rgba(236, 72, 127, ${alpha * 0.9})`;
+        ctx.shadowColor = `rgba(${c.glow}, ${alpha * 0.9})`;
         ctx.shadowBlur = 9;
 
         ctx.beginPath();
@@ -324,18 +333,18 @@ if (rsvpForm) {
         ctx.closePath();
         ctx.fill();
 
-        // Gleaming bright blush-white center glint
-        ctx.fillStyle = `rgba(255, 245, 250, ${Math.min(1, alpha * 1.25)})`;
+        // Gleaming bright center glint matching color palette
+        ctx.fillStyle = `rgba(${c.glint}, ${Math.min(1, alpha * 1.25)})`;
         ctx.beginPath();
         ctx.arc(0, 0, inner * 0.8, 0, Math.PI * 2);
         ctx.fill();
 
         ctx.restore();
       } else {
-        // Draw Soft Glowing Round Pink Dust Mote
+        // Draw Soft Glowing Round Gold/Pink Dust Mote
         ctx.save();
         ctx.fillStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha})`;
-        ctx.shadowColor = `rgba(244, 114, 160, ${alpha * 0.85})`;
+        ctx.shadowColor = `rgba(${c.glow}, ${alpha * 0.85})`;
         ctx.shadowBlur = 7;
 
         ctx.beginPath();
