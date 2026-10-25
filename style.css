@@ -6,9 +6,9 @@
   --bg-page: #f5f0e8;
   --bg-card: #fffdf9;
   --bg-cream: #faf6f0;
-  --text-dark: #1b382b;
-  --text-body: #2c473a;
-  --text-muted: #5e756a;
+  --text-dark: #12281e;
+  --text-body: #1c3629;
+  --text-muted: #3d584c;
   --gold: #c59b4b;
   --gold-glow: #e5c378;
   --gold-border: rgba(197, 155, 75, 0.4);
@@ -17,7 +17,7 @@
   --rose-hover: #9e4652;
   --rose-light: #fbf0f2;
   --emerald: #1e3f33;
-  --emerald-dark: #142a22;
+  --emerald-dark: #0f241a;
   --card-shadow: 0 24px 64px rgba(27, 56, 43, 0.14);
 }
 
@@ -38,6 +38,8 @@ body {
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
 
@@ -167,8 +169,8 @@ body {
 /* Eyebrow: LET THE CELEBRATION BEGIN */
 .v2-eyebrow {
   font-family: 'Cinzel', Georgia, serif;
-  font-size: clamp(10px, 1.8vw, 13px);
-  font-weight: 600;
+  font-size: clamp(11.5px, 1.8vw, 13.5px);
+  font-weight: 700;
   letter-spacing: 3.5px;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -179,8 +181,8 @@ body {
 .v2-groom-name {
   font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
-  font-weight: 600;
-  font-size: clamp(32px, 5.8vw, 50px);
+  font-weight: 700;
+  font-size: clamp(36px, 5.8vw, 50px);
   color: var(--emerald-dark);
   line-height: 1.1;
   margin-bottom: 1%;
@@ -189,20 +191,22 @@ body {
 /* Parentage */
 .v2-parentage {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(13px, 1.8vw, 15px);
+  font-size: clamp(14px, 1.8vw, 15.5px);
   color: var(--text-muted);
-  line-height: 1.35;
+  line-height: 1.4;
   margin-bottom: 2%;
+  font-weight: 500;
 }
 
 .v2-parentage .label {
   font-style: italic;
-  font-size: 0.9em;
-  color: #7b8f84;
+  font-size: 0.95em;
+  color: #3d584c;
+  font-weight: 600;
 }
 
 .v2-parentage .names {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-dark);
 }
 
@@ -224,16 +228,17 @@ body {
 
 .v2-amp-divider .amp {
   font-family: 'Alex Brush', cursive;
-  font-size: clamp(24px, 4vw, 32px);
-  color: var(--gold);
+  font-size: clamp(26px, 4vw, 32px);
+  color: #b07e2c;
+  font-weight: 600;
   line-height: 1;
 }
 
 /* Bride Name: Abhigna */
 .v2-bride-name {
   font-family: 'Alex Brush', cursive;
-  font-weight: 400;
-  font-size: clamp(44px, 7.8vw, 68px);
+  font-weight: 500;
+  font-size: clamp(48px, 7.8vw, 68px);
   color: var(--emerald-dark);
   line-height: 0.95;
   margin-bottom: 1%;
@@ -249,9 +254,10 @@ body {
 /* Warm Invitation Paragraph */
 .v2-invitation-text {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(13px, 2vw, 17px);
-  color: var(--text-body);
-  line-height: 1.5;
+  font-size: clamp(15px, 2.2vw, 17.5px);
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.55;
   max-width: 440px;
   margin: 0 auto 3% auto;
 }
@@ -271,7 +277,7 @@ body {
   align-items: center;
   gap: 6px;
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(14px, 2vw, 17px);
+  font-size: clamp(15px, 2.1vw, 17.5px);
   font-weight: 600;
   color: var(--text-dark);
 }
@@ -284,16 +290,16 @@ body {
 .v2-cal-pill-hero {
   display: inline-flex;
   align-items: center;
-  background: rgba(197, 155, 75, 0.18);
-  color: #7a5410;
-  border: 1px solid rgba(197, 155, 75, 0.45);
+  background: rgba(197, 155, 75, 0.22);
+  color: #724c08;
+  border: 1px solid rgba(197, 155, 75, 0.55);
   font-family: 'Cinzel', serif;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.8px;
   text-transform: uppercase;
   text-decoration: none;
-  padding: 2px 9px;
+  padding: 3px 10px;
   border-radius: 14px;
   margin-left: 6px;
   transition: all 0.22s ease;
@@ -320,16 +326,16 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  background: rgba(197, 155, 75, 0.14);
-  color: #8c6418;
-  border: 1px solid rgba(197, 155, 75, 0.4);
+  background: rgba(197, 155, 75, 0.18);
+  color: #7a5209;
+  border: 1px solid rgba(197, 155, 75, 0.45);
   font-family: 'Cinzel', serif;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.8px;
   text-transform: uppercase;
   text-decoration: none;
-  padding: 3px 10px;
+  padding: 3px 11px;
   border-radius: 20px;
   transition: all 0.22s ease;
   white-space: nowrap;
@@ -353,10 +359,10 @@ body {
   color: #ffffff;
   text-decoration: none;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(12.5px, 1.8vw, 15px);
-  font-weight: 600;
+  font-size: clamp(14px, 1.8vw, 15.5px);
+  font-weight: 700;
   letter-spacing: 0.5px;
-  padding: clamp(9px, 1.4vw, 12px) clamp(22px, 3.5vw, 32px);
+  padding: 11px 28px;
   border-radius: 50px;
   box-shadow: 0 10px 24px rgba(183, 93, 105, 0.38);
   transition: all 0.28s ease;
@@ -417,7 +423,18 @@ body {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(28px, 4vw, 36px);
   color: var(--emerald-dark);
+  font-weight: 700;
+}
+
+.v2-story-text {
+  text-align: center;
+  max-width: 580px;
+  margin: 0 auto;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 21px;
   font-weight: 600;
+  line-height: 1.65;
+  color: var(--text-dark);
 }
 
 /* Ceremony Cards Grid */
@@ -448,10 +465,10 @@ body {
 .v2-event-badge {
   display: inline-block;
   align-self: flex-start;
-  background: rgba(197, 155, 75, 0.15);
-  color: #8c6418;
+  background: rgba(197, 155, 75, 0.18);
+  color: #724c08;
   font-family: 'Cinzel', serif;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -463,12 +480,13 @@ body {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 26px;
   color: var(--emerald-dark);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .v2-event-time {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 18px;
+  font-size: 19.5px;
+  font-weight: 600;
   color: var(--text-dark);
   line-height: 1.5;
 }
@@ -479,17 +497,26 @@ body {
 }
 
 .v2-event-time .food-note {
+  display: block;
   font-style: italic;
-  font-size: 16px;
-  color: #7b8f84;
+  font-size: 16.5px;
+  color: #3d584c;
+  font-weight: 600;
+  margin-top: 4px;
 }
 
 .v2-event-loc {
-  font-size: 14.5px;
-  color: var(--text-muted);
-  line-height: 1.5;
+  font-size: 15.5px;
+  color: var(--text-body);
+  font-weight: 500;
+  line-height: 1.55;
   border-top: 1px dashed rgba(197, 155, 75, 0.25);
   padding-top: 14px;
+}
+
+.v2-event-loc strong {
+  color: var(--emerald-dark);
+  font-weight: 700;
 }
 
 .v2-event-actions {
@@ -505,8 +532,8 @@ body {
   gap: 6px;
   color: var(--rose);
   text-decoration: none;
-  font-size: 13.5px;
-  font-weight: 600;
+  font-size: 14.5px;
+  font-weight: 700;
   letter-spacing: 0.3px;
   transition: color 0.2s ease;
 }
@@ -525,13 +552,15 @@ body {
 
 .v2-venue-name {
   font-family: 'Playfair Display', serif;
-  font-size: 24px;
+  font-size: 26px;
+  font-weight: 700;
   color: var(--emerald-dark);
   margin-bottom: 8px;
 }
 
 .v2-venue-address {
-  font-size: 16px;
+  font-size: 16.5px;
+  font-weight: 500;
   color: var(--text-dark);
   line-height: 1.6;
   margin-bottom: 20px;
@@ -740,22 +769,281 @@ select.v2-input {
 
 /* Responsive adjustments */
 @media (max-width: 640px) {
+  /* Navigation */
   .v2-nav-container {
     gap: 16px;
     padding: 12px 14px;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .v2-nav-link {
-    font-size: 11.5px;
-    letter-spacing: 1px;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
   }
+
+  /* Main Wrapper */
+  .v2-main-wrapper {
+    padding: 16px 12px 60px 12px;
+  }
+
+  /* Hero Card */
+  .v2-hero-card {
+    border-radius: 26px;
+    margin-bottom: 36px;
+  }
+
   .v2-hero-content {
-    padding: 32px 18px 20px 18px;
+    padding: 20px 14px 10px 14px;
   }
+
+  .v2-eyebrow {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #364e43;
+    margin-bottom: 5px;
+  }
+
+  .v2-groom-name {
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 2px;
+  }
+
+  .v2-parentage {
+    font-size: 14.5px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+
+  .v2-parentage .label {
+    font-size: 13.5px;
+    color: #3d584c;
+    font-weight: 600;
+  }
+
+  .v2-parentage .names {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0d2218;
+  }
+
+  .v2-amp-divider {
+    gap: 10px;
+    margin: 3px auto;
+  }
+
+  .v2-amp-divider .amp {
+    font-size: 26px;
+    color: #b07e2c;
+    font-weight: 600;
+  }
+
+  .v2-bride-name {
+    font-size: 52px;
+    font-weight: 600;
+    line-height: 0.95;
+    margin-bottom: 3px;
+  }
+
+  .v2-sub-crest {
+    margin: 5px 0 5px 0;
+  }
+
+  .v2-br-desktop {
+    display: none;
+  }
+
+  .v2-invitation-text {
+    font-size: 14.5px;
+    font-weight: 600;
+    line-height: 1.45;
+    color: #12281e;
+    max-width: 275px;
+    margin: 0 auto 10px auto;
+  }
+
+  .v2-meta-row {
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 12px;
+  }
+
+  .v2-meta-badge {
+    font-size: 15px;
+    font-weight: 600;
+    color: #12281e;
+    justify-content: center;
+  }
+
+  .v2-meta-badge .icon {
+    font-size: 16px;
+  }
+
+  .v2-meta-badge-muhurtham {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .v2-meta-badge-muhurtham .v2-cal-pill-hero {
+    margin-left: 0;
+    font-size: 10.5px;
+    padding: 3px 12px;
+    font-weight: 700;
+  }
+
+  .v2-btn-rsvp {
+    font-size: 14.5px;
+    font-weight: 700;
+    padding: 10px 26px;
+  }
+
+  /* Section cards */
+  .v2-section {
+    margin-bottom: 36px;
+  }
+
   .v2-section-card {
-    padding: 28px 18px;
+    padding: 26px 18px;
+    border-radius: 22px;
   }
+
+  .v2-section-header {
+    margin-bottom: 24px;
+  }
+
+  .v2-section-eyebrow {
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  .v2-section-title {
+    font-size: 26px;
+    font-weight: 700;
+  }
+
+  .v2-story-text {
+    font-size: 18.5px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #12281e;
+  }
+
+  /* Events */
+  .v2-event-card {
+    padding: 22px 18px;
+    gap: 14px;
+    border-radius: 18px;
+  }
+
+  .v2-event-badge {
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 3px 10px;
+  }
+
+  .v2-event-title {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .v2-event-time {
+    font-size: 18.5px;
+    font-weight: 600;
+    color: #12281e;
+  }
+
+  .v2-event-time .time-hl {
+    font-size: 18.5px;
+    font-weight: 700;
+    color: var(--rose);
+  }
+
+  .v2-event-time .food-note {
+    font-size: 15.5px;
+    color: #364e43;
+    font-weight: 600;
+  }
+
+  .v2-muhurtham-line {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .v2-cal-pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+  }
+
+  .v2-event-loc {
+    font-size: 15px;
+    color: #233e31;
+    font-weight: 500;
+  }
+
+  .v2-event-loc strong {
+    font-size: 15.5px;
+    color: #0d2218;
+    font-weight: 700;
+  }
+
+  .v2-event-actions {
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  .v2-btn-textlink {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* Venue Card */
+  .v2-venue-name {
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .v2-venue-address {
+    font-size: 15.5px;
+    font-weight: 500;
+    color: #12281e;
+  }
+
+  /* RSVP Form */
+  .v2-form-group label {
+    font-size: 12.5px;
+    font-weight: 700;
+  }
+
+  .v2-input,
+  select.v2-input,
+  .v2-textarea {
+    font-size: 16px; /* Prevents iOS auto-zoom on input focus */
+    font-weight: 500;
+    padding: 13px 14px;
+  }
+
   .v2-attendance-grid {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .v2-radio-content .text {
+    font-size: 14.5px;
+    font-weight: 700;
+  }
+
+  .v2-btn-submit {
+    font-size: 16px;
+    font-weight: 700;
+    padding: 14px;
   }
 }
