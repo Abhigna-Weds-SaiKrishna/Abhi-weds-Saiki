@@ -41,68 +41,14 @@ body {
   overflow-x: hidden;
 }
 
-/* ==========================================================================
-   FLOATING VERSION SWITCHER BAR
-   ========================================================================== */
-.version-switcher {
+/* Interactive Sunlit Gold Stardust Canvas */
+.v2-sparkles-canvas {
   position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  background: rgba(28, 51, 40, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 6px 10px;
-  border-radius: 40px;
-  border: 1px solid rgba(229, 195, 120, 0.4);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  white-space: nowrap;
-  max-width: 95vw;
-  overflow-x: auto;
-  animation: slideUpFade 0.6s ease-out;
-}
-
-@keyframes slideUpFade {
-  from { opacity: 0; transform: translate(-50%, 20px); }
-  to { opacity: 1; transform: translate(-50%, 0); }
-}
-
-.version-switcher .lbl {
-  color: var(--gold-glow);
-  font-weight: 600;
-  font-family: 'Cinzel', serif;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding-left: 8px;
-}
-
-.version-chip {
-  text-decoration: none;
-  padding: 6px 14px;
-  border-radius: 24px;
-  font-weight: 600;
-  font-size: 12px;
-  transition: all 0.25s ease;
-  color: #e3ece7;
-  border: 1px solid transparent;
-}
-
-.version-chip:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
-}
-
-.version-chip.active {
-  background: linear-gradient(135deg, #c59b4b, #e5c378);
-  color: #1a3025;
-  font-weight: 700;
-  box-shadow: 0 4px 12px rgba(197, 155, 75, 0.35);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
 }
 
 /* ==========================================================================
@@ -125,7 +71,7 @@ body {
 }
 
 .v2-nav-container {
-  max-width: 900px;
+  max-width: 712px;
   margin: 0 auto;
   padding: 16px 24px;
   display: flex;
@@ -172,7 +118,8 @@ body {
    PAGE CONTAINER & SECTIONS
    ========================================================================== */
 .v2-main-wrapper {
-  max-width: 780px;
+  width: 100%;
+  max-width: 712px;
   margin: 0 auto;
   padding: 24px 16px 80px 16px;
 }
@@ -372,10 +319,15 @@ body {
    CARDS & SECTIONS (Our Story, Celebrations, Venue, RSVP)
    ========================================================================== */
 .v2-section {
-  margin-bottom: 56px;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto 56px auto;
 }
 
 .v2-section-card {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
   background: var(--bg-card);
   border-radius: 28px;
   border: 1.5px solid var(--gold-border);
@@ -672,6 +624,8 @@ body {
    ========================================================================== */
 .v2-footer {
   text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
   padding: 40px 20px 80px 20px;
   color: var(--text-muted);
 }

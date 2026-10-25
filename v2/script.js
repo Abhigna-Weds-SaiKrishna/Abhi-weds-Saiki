@@ -149,3 +149,212 @@ if (rsvpForm) {
     }
   });
 }
+
+/* ==========================================================================
+   INTERACTIVE SUNLIT GOLD STARDUST (Touch & Cursor Repulsion)
+   ========================================================================== */
+(function initInteractiveStardust() {
+  const canvas = document.getElementById('v2SparklesCanvas');
+  if (!canvas) return;
+
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
+
+  const ctx = canvas.getContext('2d');
+  let W = 0, H = 0, DPR = 1;
+
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = Math.floor(W * DPR);
+    canvas.height = Math.floor(H * DPR);
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  // Pointer tracking (mouse and touch)
+  const pointer = {
+    x: -9999,
+    y: -9999,
+    radius: 120, // repulsion radius in CSS pixels
+    power: 4.5,
+    active: false,
+    lastSeen: 0
+  };
+
+  function updatePointer(x, y) {
+    pointer.x = x;
+    pointer.y = y;
+    pointer.active = true;
+    pointer.lastSeen = performance.now();
+  }
+
+  window.addEventListener('pointermove', e => updatePointer(e.clientX, e.clientY), { passive: true });
+  window.addEventListener('pointerdown', e => updatePointer(e.clientX, e.clientY), { passive: true });
+  window.addEventListener('touchmove', e => {
+    if (e.touches && e.touches[0]) {
+      updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
+  window.addEventListener('touchstart', e => {
+    if (e.touches && e.touches[0]) {
+      updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
+
+  window.addEventListener('pointerleave', () => { pointer.active = false; }, { passive: true });
+  window.addEventListener('touchend', () => { pointer.active = false; }, { passive: true });
+
+  // 100% Rich Radiant Golden Palette (No pink or rose)
+  const COLORS = [
+    { r: 218, g: 165, b: 32 },   // 24K Goldenrod (#DAA520)
+    { r: 245, g: 183, b: 0 },    // Pure Radiant Gold (#F5B700)
+    { r: 255, g: 215, b: 0 },    // Brilliant Gold (#FFD700)
+    { r: 197, g: 155, b: 75 },   // Antique Temple Gold (#C59B4B)
+    { r: 230, g: 175, b: 35 }    // Warm Honey Gold (#E6AF23)
+  ];
+
+  const COUNT = W < 640 ? 45 : 85;
+  const particles = [];
+
+  for (let i = 0; i < COUNT; i++) {
+    const isStar = Math.random() < 0.45; // 45% golden star twinkles, 55% round gold motes
+    const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    particles.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: isStar ? (2.0 + Math.random() * 2.5) : (1.0 + Math.random() * 2.2),
+      isStar: isStar,
+      color: color,
+      baseVx: (Math.random() - 0.5) * 0.3,
+      baseVy: -(0.2 + Math.random() * 0.45), // gentle upward float
+      vx: 0,
+      vy: 0,
+      phase: Math.random() * Math.PI * 2,
+      freq: 0.02 + Math.random() * 0.04,
+      rot: Math.random() * Math.PI,
+      rotSpeed: (Math.random() - 0.5) * 0.03,
+      twinkle: 1
+    });
+  }
+
+  let rafId = null;
+
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+
+    const now = performance.now();
+    let pointerStrength = pointer.active ? 1 : 0;
+    if (pointer.active && now - pointer.lastSeen > 1200) {
+      pointerStrength = Math.max(0, 1 - (now - pointer.lastSeen - 1200) / 600);
+      if (pointerStrength <= 0) pointer.active = false;
+    }
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      // Interactive repulsion physics
+      if (pointerStrength > 0) {
+        const dx = p.x - pointer.x;
+        const dy = p.y - pointer.y;
+        const dist = Math.hypot(dx, dy);
+
+        if (dist < pointer.radius && dist > 1) {
+          const force = (1 - dist / pointer.radius) * pointerStrength;
+          const push = force * pointer.power;
+          const angle = Math.atan2(dy, dx);
+          p.vx += Math.cos(angle) * push;
+          p.vy += Math.sin(angle) * push;
+
+          // Flare up twinkle and spin faster when repelled
+          p.twinkle = Math.min(1.8, p.twinkle + force * 0.6);
+          p.rot += p.rotSpeed * 5;
+        }
+      }
+
+      // Physics damping & base drift recovery
+      p.vx *= 0.93;
+      p.vy = p.vy * 0.93 + p.baseVy * 0.07;
+      p.x += p.baseVx + p.vx;
+      p.y += p.vy;
+
+      // Smooth wrap-around screen boundaries
+      if (p.x < -30) p.x = W + 30;
+      else if (p.x > W + 30) p.x = -30;
+      if (p.y < -30) p.y = H + 30;
+      else if (p.y > H + 30) p.y = -30;
+
+      // Twinkle pulsation
+      p.phase += p.freq;
+      p.twinkle = Math.max(1, p.twinkle * 0.98); // decay flare back to 1
+      const alphaWave = 0.5 + 0.5 * Math.sin(p.phase);
+      const alpha = Math.min(0.95, (0.3 + 0.45 * alphaWave) * p.twinkle);
+
+      p.rot += p.rotSpeed;
+
+      const c = p.color;
+
+      if (p.isStar) {
+        // Draw 4-point Diamond Star Twinkle (✦)
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+
+        const starR = p.r * (0.9 + 0.4 * alphaWave) * p.twinkle;
+        const inner = starR * 0.22;
+
+        ctx.fillStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha})`;
+        ctx.shadowColor = `rgba(245, 183, 0, ${alpha * 0.9})`;
+        ctx.shadowBlur = 8;
+
+        ctx.beginPath();
+        ctx.moveTo(0, -starR);
+        ctx.quadraticCurveTo(0, -inner, inner, -inner);
+        ctx.quadraticCurveTo(inner, 0, starR, 0);
+        ctx.quadraticCurveTo(inner, 0, inner, inner);
+        ctx.quadraticCurveTo(0, inner, 0, starR);
+        ctx.quadraticCurveTo(0, inner, -inner, inner);
+        ctx.quadraticCurveTo(-inner, 0, -starR, 0);
+        ctx.quadraticCurveTo(-inner, 0, -inner, -inner);
+        ctx.quadraticCurveTo(0, -inner, 0, -starR);
+        ctx.closePath();
+        ctx.fill();
+
+        // Gleaming bright gold center glint
+        ctx.fillStyle = `rgba(255, 245, 190, ${Math.min(1, alpha * 1.2)})`;
+        ctx.beginPath();
+        ctx.arc(0, 0, inner * 0.8, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+      } else {
+        // Draw Soft Glowing Round Gold Dust Mote
+        ctx.save();
+        ctx.fillStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha})`;
+        ctx.shadowColor = `rgba(235, 178, 40, ${alpha * 0.8})`;
+        ctx.shadowBlur = 6;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * (0.85 + 0.35 * alphaWave), 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    rafId = requestAnimationFrame(render);
+  }
+
+  rafId = requestAnimationFrame(render);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      cancelAnimationFrame(rafId);
+    } else {
+      rafId = requestAnimationFrame(render);
+    }
+  });
+})();

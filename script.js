@@ -1,302 +1,40 @@
-// =========================================================================
-// WEDDING INVITATION CONFIGURATION & PARAMETERS
-// Edit any of the values in this object to customize the website.
-// All names, dates, locations, calendar events, and texts update dynamically.
-// =========================================================================
-const WEDDING_CONFIG = {
-  // Couple details
+// ==========================================================================
+// SAI KRISHNA WEDS ABHIGNA — VERSION 2 LOGIC
+// ==========================================================================
+
+const V2_CONFIG = {
   couple: {
     groom: 'Sai Krishna',
-    groomPrefix: 'S/O',
-    groomParents: 'Ravindranath & Krishnaveni',
-    bride: 'Abhigna',
-    bridePrefix: 'D/O',
-    brideParents: 'Venkateswara Rao & Anitha',
-    initials: 'S & A'
+    bride: 'Abhigna'
   },
-
-  // Dates & Times
   date: {
-    heroBadge: 'SUNDAY · NOVEMBER 22, 2026',
-    dayMonth: 'November 22',
-    year: '2026',
-    dayOfWeek: 'Sunday',
-    muhurtham: 'Muhurtham · 9:22 AM',
-    timeSummary: 'Sunday, 2026<br>Muhurtham · 9:22 AM',
-    footerDate: '22 NOVEMBER 2026',
-    // ISO 8601 UTC strings for Google Calendar & .ics files
-    isoStart: '20261122T133000Z',
-    isoEnd: '20261122T203000Z'
+    weddingDay: 'Sunday, November 22, 2026',
+    muhurtham: 'Muhurtham · 9:22 AM'
   },
-
-  // Venue & Location
   location: {
-    cityState: 'Round Rock, Texas',
-    addressHtml: 'Round Rock Conference Center and Banquet Hall at Wingate by Wyndham<br>1209 I 35 N Frontage Rd<br>Round Rock, Texas 78664',
-    addressPlain: 'Round Rock Conference Center and Banquet Hall at Wingate by Wyndham, 1209 I 35 N Frontage Rd, Round Rock, TX 78664',
-    mapsUrl: 'https://maps.app.goo.gl/WfE8yPbkXVZMxpB6A'
+    wedding: 'Round Rock Conference Center and Banquet Hall at Wingate by Wyndham, 1209 I 35 N Frontage Rd, Round Rock, TX 78664',
+    puja: '309 Redonda Dr, Liberty Hill, Texas'
   },
-
-  // Story & Section Headings/Texts
-  texts: {
-    pageTitle: 'Sai Krishna weds Abhigna · Wedding Celebration',
-
-    // Hero Section
-    heroEyebrow: 'LET THE CELEBRATION BEGIN',
-    heroLede1: 'With divine grace and the blessings of our families,<br>we warmly invite you to be part of our<br>wedding celebrations.',
-    heroLede2: 'A little tradition, a lot of joy,<br>and a lifetime of togetherness.',
-    heroCaption: '',
-
-    // Events / Celebrations Section
-    eventsEyebrow: '',
-    eventsTitle: '',
-
-    // Details Section
-    detailsDateEyebrow: 'The auspicious day',
-    detailsLocationEyebrow: 'Where love gathers',
-    detailsBlessNote: 'Your presence is our greatest blessing.',
-
-    // RSVP Section
-    rsvpEyebrow: 'Come for the wedding, stay for the memories',
-    rsvpTitle: 'A seat saved<br>with love.',
-    rsvpDescription: 'We would love to celebrate this beautiful beginning with you. Let us know if you can join us.',
-    rsvpYes: 'Yes, will be there!',
-    rsvpDecline: 'No, cannot make it',
-    rsvpDeclineIcon: '🥺',
-
-    // Footer
-    footerSubtext: 'MADE WITH LOVE'
-  },
-
-  // 2 Wedding Events (Marriage, Satyanarayana Vratam)
-  events: [
-    {
-      id: 'marriage',
-      badge: 'The Wedding',
-      title: 'Wedding',
-      timeDetail: 'Sunday, Nov 22, 2026<br>Starts at 7:30 AM<br>Muhurtham · 9:22 AM<br>Breakfast and lunch follows',
-      actionText: 'Join our celebration ↓',
-      locationHeading: 'Round Rock, TX',
-      locationAddress: 'Round Rock Conference Center and Banquet Hall at Wingate by Wyndham<br>1209 I 35 N Frontage Rd<br>Round Rock, Texas 78664',
-      mapsUrl: 'https://maps.app.goo.gl/WfE8yPbkXVZMxpB6A'
-    },
-    {
-      id: 'satyanarayana-vratam',
-      badge: 'Post-Wedding Puja',
-      title: 'Satyanarayana Swami Vratam',
-      timeDetail: 'Monday, Nov 23, 2026<br>Auspicious Puja · 5:00 AM',
-      actionText: 'Seek divine blessings ↓',
-      locationHeading: 'Liberty Hill, TX',
-      locationAddress: '309 Redonda Dr<br>Liberty Hill, Texas',
-      mapsUrl: 'https://www.google.com/maps/search/?api=1&query=309+Redonda+Dr+Liberty+Hill+TX'
-    }
-  ],
-
-  // Emojis for celebratory & declined RSVP responses
-  emojis: {
-    attending: ['🎉', '💖', '✨', '🥳', '💃', '🕺', '🥂', '🎊'],
-    cannotCome: ['😢', '😭', '🥺', '💔', '😞', '😔', '😿', '😥']
-  },
-
-  // Calendar Event (.ics download & Google Calendar)
-  calendar: {
-    title: 'Sai Krishna weds Abhigna Wedding',
-    description: 'Join us to celebrate the wedding of Sai Krishna and Abhigna (Starts at 7:30 AM, Muhurtham at 9:22 AM). Breakfast and lunch follows.',
-    icsFilename: 'Sai-Krishna-Abhigna-Wedding.ics',
-    uid: 'sai-abhigna-20261122@wedding'
-  },
-
-  // Google Apps Script Web App URL for recording RSVPs to Google Sheets
   googleScriptUrl: 'https://script.google.com/macros/s/AKfycbw1HL5bZfJ7vfG4RNAKiRjrdVKb5EcL1Ywbejre-Lo5vPsQtag6STAz439pAFI9gDyz/exec'
 };
 
-if (typeof window !== 'undefined') {
-  window.WEDDING_CONFIG = WEDDING_CONFIG;
-}
-
+// Helper selector
 const $ = id => document.getElementById(id);
 
-// =========================================================================
-// DYNAMIC DOM POPULATION
-// Applies all parameters from WEDDING_CONFIG to the HTML document.
-// =========================================================================
-function applyWeddingConfig() {
-  const c = WEDDING_CONFIG;
-  if (!c) return;
-
-  // 1. Page Title
-  if (c.texts && c.texts.pageTitle) {
-    document.title = c.texts.pageTitle;
-  }
-
-  // 2. Header Brand
-  const brandLink = $('brand-link');
-  if (brandLink && c.couple) {
-    brandLink.textContent = c.couple.initials || `${c.couple.groom[0]} & ${c.couple.bride[0]}`;
-  }
-
-  // 3. Hero Section
-  const heroEyebrow = $('hero-eyebrow');
-  if (heroEyebrow && c.texts) heroEyebrow.innerHTML = c.texts.heroEyebrow;
-
-  const heroGroomName = $('hero-groom-name');
-  if (heroGroomName && c.couple) heroGroomName.textContent = c.couple.groom;
-
-  const heroGroomPrefix = $('hero-groom-prefix');
-  if (heroGroomPrefix && c.couple) heroGroomPrefix.textContent = c.couple.groomPrefix || 'S/O';
-
-  const heroGroomParents = $('hero-groom-parents');
-  if (heroGroomParents && c.couple) heroGroomParents.textContent = c.couple.groomParents;
-
-  const heroBrideName = $('hero-bride-name');
-  if (heroBrideName && c.couple) heroBrideName.textContent = c.couple.bride;
-
-  const heroBridePrefix = $('hero-bride-prefix');
-  if (heroBridePrefix && c.couple) heroBridePrefix.textContent = c.couple.bridePrefix || 'D/O';
-
-  const heroBrideParents = $('hero-bride-parents');
-  if (heroBrideParents && c.couple) heroBrideParents.textContent = c.couple.brideParents;
-
-  const heroLede1 = $('hero-lede-1');
-  if (heroLede1 && c.texts) heroLede1.innerHTML = c.texts.heroLede1;
-
-  const heroNames = $('hero-couple-heading');
-  if (heroNames && c.couple) {
-    heroNames.innerHTML = `${c.couple.groom}<span>&amp;</span>${c.couple.bride}`;
-  }
-
-  const heroLede2 = $('hero-lede-2');
-  if (heroLede2 && c.texts) heroLede2.innerHTML = c.texts.heroLede2;
-
-  const heroDate = $('hero-date');
-  if (heroDate && c.date) heroDate.textContent = c.date.heroBadge;
-
-  const heroLocation = $('hero-location');
-  if (heroLocation && c.location) heroLocation.textContent = c.location.cityState;
-
-  const heroCaption = $('hero-caption');
-  if (heroCaption && c.texts) heroCaption.innerHTML = c.texts.heroCaption;
-
-  // Google Calendar Link
-  const gcalLink = $('gcal-link');
-  if (gcalLink && c.calendar && c.date && c.location) {
-    const gcalUrl = new URL('https://calendar.google.com/calendar/render');
-    gcalUrl.searchParams.set('action', 'TEMPLATE');
-    gcalUrl.searchParams.set('text', c.calendar.title);
-    gcalUrl.searchParams.set('dates', `${c.date.isoStart}/${c.date.isoEnd}`);
-    gcalUrl.searchParams.set('details', c.calendar.description);
-    gcalUrl.searchParams.set('location', c.location.addressPlain);
-    gcalLink.href = gcalUrl.toString();
-  }
-
-  // 4. Celebrations & Event Blocks
-  const eventsEyebrow = $('events-eyebrow');
-  if (eventsEyebrow && c.texts && c.texts.eventsEyebrow) eventsEyebrow.innerHTML = c.texts.eventsEyebrow;
-
-  const eventsTitle = $('events-title');
-  if (eventsTitle && c.texts && c.texts.eventsTitle) eventsTitle.innerHTML = c.texts.eventsTitle;
-
-  if (c.events && Array.isArray(c.events)) {
-    // 1. Marriage
-    const ev2 = c.events.find(e => e.id === 'marriage') || c.events[0];
-    if (ev2) {
-      const b = $('event-2-badge'); if (b && ev2.badge) b.textContent = ev2.badge;
-      const t = $('event-2-title'); if (t && ev2.title) t.textContent = ev2.title;
-      const tm = $('event-2-time'); if (tm && ev2.timeDetail) tm.innerHTML = ev2.timeDetail;
-      const a = $('event-2-action'); if (a && ev2.actionText) a.textContent = ev2.actionText;
-      const lh = $('event-2-location'); if (lh && ev2.locationHeading) lh.textContent = ev2.locationHeading;
-      const la = $('event-2-address'); if (la && ev2.locationAddress) la.innerHTML = ev2.locationAddress;
-      const m = $('event-2-map'); if (m && ev2.mapsUrl) m.href = ev2.mapsUrl;
-    }
-
-    // 2. Satyanarayana Vratam
-    const ev3 = c.events.find(e => e.id === 'satyanarayana-vratam') || c.events[1];
-    if (ev3) {
-      const b = $('event-3-badge'); if (b && ev3.badge) b.textContent = ev3.badge;
-      const t = $('event-3-title'); if (t && ev3.title) t.textContent = ev3.title;
-      const tm = $('event-3-time'); if (tm && ev3.timeDetail) tm.innerHTML = ev3.timeDetail;
-      const a = $('event-3-action'); if (a && ev3.actionText) a.textContent = ev3.actionText;
-      const lh = $('event-3-location'); if (lh && ev3.locationHeading) lh.textContent = ev3.locationHeading;
-      const la = $('event-3-address'); if (la && ev3.locationAddress) la.innerHTML = ev3.locationAddress;
-      const m = $('event-3-map'); if (m && ev3.mapsUrl) m.href = ev3.mapsUrl;
-    }
-  }
-
-  // Fallback bindings for existing single-card IDs
-  const detailsDateEyebrow = $('details-date-eyebrow');
-  if (detailsDateEyebrow && c.texts) detailsDateEyebrow.innerHTML = c.texts.detailsDateEyebrow;
-
-  const detailsDateHeading = $('details-date-heading');
-  if (detailsDateHeading && c.date) detailsDateHeading.textContent = c.date.dayMonth;
-
-  const detailsDateSub = $('details-date-sub');
-  if (detailsDateSub && c.date) detailsDateSub.innerHTML = c.date.timeSummary;
-
-  const detailsLocationEyebrow = $('details-location-eyebrow');
-  if (detailsLocationEyebrow && c.texts) detailsLocationEyebrow.innerHTML = c.texts.detailsLocationEyebrow;
-
-  const detailsLocationHeading = $('details-location-heading');
-  if (detailsLocationHeading && c.location) detailsLocationHeading.textContent = c.location.cityState;
-
-  const detailsLocationAddress = $('details-location-address');
-  if (detailsLocationAddress && c.location) detailsLocationAddress.innerHTML = c.location.addressHtml;
-
-  const directionsLink = $('directions-link');
-  if (directionsLink && c.location) directionsLink.href = c.location.mapsUrl;
-
-  const detailsBlessNote = $('details-bless-note');
-  if (detailsBlessNote && c.texts) detailsBlessNote.innerHTML = c.texts.detailsBlessNote;
-
-  // 5. RSVP Section
-  const rsvpEyebrow = $('rsvp-eyebrow');
-  if (rsvpEyebrow && c.texts) rsvpEyebrow.innerHTML = c.texts.rsvpEyebrow;
-
-  const rsvpTitle = $('rsvp-title');
-  if (rsvpTitle && c.texts) rsvpTitle.innerHTML = c.texts.rsvpTitle;
-
-  const rsvpDesc = $('rsvp-desc');
-  if (rsvpDesc && c.texts) rsvpDesc.innerHTML = c.texts.rsvpDescription;
-
-  const rsvpYesLabel = $('rsvp-yes-label');
-  if (rsvpYesLabel && c.texts && c.texts.rsvpYes) rsvpYesLabel.textContent = c.texts.rsvpYes;
-
-  const rsvpDeclineLabel = $('rsvp-decline-label');
-  if (rsvpDeclineLabel && c.texts && c.texts.rsvpDecline) rsvpDeclineLabel.textContent = c.texts.rsvpDecline;
-
-  const rsvpDeclineIcon = $('rsvp-decline-icon');
-  if (rsvpDeclineIcon && c.texts && c.texts.rsvpDeclineIcon) {
-    rsvpDeclineIcon.textContent = c.texts.rsvpDeclineIcon;
-  }
-
-
-  // 6. Footer
-  const footerNames = $('footer-names');
-  if (footerNames && c.couple) footerNames.textContent = `${c.couple.groom} & ${c.couple.bride}`;
-
-  const footerSub = $('footer-sub');
-  if (footerSub && c.date && c.texts) {
-    footerSub.textContent = `${c.date.footerDate} · ${c.texts.footerSubtext}`;
-  }
-}
-
-// Function to spawn floating emojis
+// Emoji burst effect
 function triggerEmojiBurst(isAttending) {
-  const c = WEDDING_CONFIG;
   const emojis = isAttending
-    ? (c.emojis && c.emojis.attending ? c.emojis.attending : ['🎉', '💖', '✨', '🥳', '💃', '🕺', '🥂', '🎊'])
-    : (c.emojis && c.emojis.cannotCome ? c.emojis.cannotCome : ['😢', '😭', '🥺', '💔', '😞', '😔', '😿', '😥']);
+    ? ['🎉', '💖', '✨', '🥳', '💃', '🕺', '🥂', '🎊', '🌸', '💐']
+    : ['😢', '😭', '🥺', '💔', '😞', '😔', '😿', '😥'];
 
-  const burstCount = 35;
-
-  for (let i = 0; i < burstCount; i++) {
+  for (let i = 0; i < 35; i++) {
     const el = document.createElement('div');
     el.className = 'emoji-burst';
     el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-
     el.style.left = Math.random() * 100 + 'vw';
-    el.style.fontSize = (Math.random() * 24 + 16) + 'px';
+    el.style.fontSize = (Math.random() * 22 + 18) + 'px';
     el.style.animationDuration = (Math.random() * 1.5 + 1.5) + 's';
-    el.style.animationDelay = (Math.random() * 0.4) + 's';
+    el.style.animationDelay = (Math.random() * 0.3) + 's';
 
     const drift = (Math.random() - 0.5) * 300 + 'px';
     const rot = (Math.random() - 0.5) * 360 + 'deg';
@@ -308,200 +46,315 @@ function triggerEmojiBurst(isAttending) {
   }
 }
 
-// Watch for radio button changes
+// Attendance Radio Selection Listener
 document.querySelectorAll('input[name="Attending"]').forEach(radio => {
   radio.addEventListener('change', () => {
-    const isAttending = radio.value === 'Yes' || radio.value === 'Bride Side' || radio.value === 'Groom Side';
-
+    const isAttending = radio.value === 'Yes';
     triggerEmojiBurst(isAttending);
 
-    const partyField = $('party-field');
-    const guests = $('guests');
-    if (partyField) partyField.hidden = !isAttending;
-    if (guests) {
-      guests.disabled = !isAttending;
-      guests.required = isAttending;
+    const guestsGroup = $('guests-group');
+    const guestsInput = $('guests');
+    if (guestsGroup) guestsGroup.hidden = !isAttending;
+    if (guestsInput) {
+      guestsInput.disabled = !isAttending;
+      guestsInput.required = isAttending;
     }
   });
 });
 
-// Smooth-scroll navigation for all in-page buttons & links
-document.querySelectorAll('[data-scroll]').forEach(link => {
+// Smooth-scroll navigation
+document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
-    const targetSelector = link.getAttribute('data-scroll');
-    const target = document.querySelector(targetSelector);
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const targetId = link.getAttribute('href');
+    if (targetId && targetId !== '#') {
+      const target = document.querySelector(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   });
 });
 
-function downloadFile(name, content, type) {
-  const blob = new Blob([content], { type });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = name;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
+// Header scroll elevation
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('.v2-header');
+  if (header) {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  }
+}, { passive: true });
 
-// Optional .ics calendar button support
-const calendarBtn = $('calendar');
-if (calendarBtn) {
-  calendarBtn.addEventListener('click', () => {
-    const c = WEDDING_CONFIG;
-    const icsContent = [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      `PRODID:-//${c.couple.groom} and ${c.couple.bride}//Wedding//EN`,
-      'BEGIN:VEVENT',
-      `UID:${c.calendar.uid}`,
-      'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
-      `DTSTART:${c.date.isoStart}`,
-      `DTEND:${c.date.isoEnd}`,
-      `SUMMARY:${c.calendar.title}`,
-      `LOCATION:${c.location.addressPlain.replace(/,/g, '\\,')}`,
-      `DESCRIPTION:${c.calendar.description}`,
-      'END:VEVENT',
-      'END:VCALENDAR',
-      ''
-    ].join('\r\n');
-    downloadFile(c.calendar.icsFilename, icsContent, 'text/calendar;charset=utf-8');
-  });
-}
-
-let preparedResponse = null;
-
-const nameInput = $('name');
-if (nameInput) {
-  nameInput.addEventListener('input', () => nameInput.setCustomValidity(''));
-}
-
-const rsvpForm = $('rsvp-form');
+// RSVP Form Submission
+const rsvpForm = $('v2-rsvp-form');
 if (rsvpForm) {
   rsvpForm.addEventListener('submit', async e => {
     e.preventDefault();
-    const nameField = $('name');
-    if (!nameField || !nameField.value.trim()) {
-      if (nameField) {
-        nameField.setCustomValidity('Please enter your full name.');
-        nameField.reportValidity();
+
+    const nameInput = $('name');
+    if (!nameInput || !nameInput.value.trim()) {
+      if (nameInput) {
+        nameInput.setCustomValidity('Please enter your full name.');
+        nameInput.reportValidity();
       }
       return;
     }
 
     const attendingInput = document.querySelector('input[name="Attending"]:checked');
-    const attendingVal = attendingInput ? attendingInput.value : '';
-    const isAttending = attendingVal === 'Yes' || attendingVal === 'Bride Side' || attendingVal === 'Groom Side';
+    const attendingVal = attendingInput ? attendingInput.value : 'Yes';
+    const isAttending = attendingVal === 'Yes';
 
-    preparedResponse = {
+    const preparedResponse = {
       Timestamp: new Date().toISOString(),
-      Name: nameField.value.trim(),
+      Name: nameInput.value.trim(),
       Attending: attendingVal,
       Events: isAttending ? 'Wedding, Satyanarayana Swami Vratam' : 'None',
       Guests: isAttending ? Number($('guests').value) || 1 : 0,
       Message: $('message') ? $('message').value.trim() : ''
     };
 
-    const status = $('status');
-    const button = $('submit');
-    const downloadRsvp = $('download-rsvp');
-    const scriptUrl = WEDDING_CONFIG.googleScriptUrl;
-    const isConfigured = scriptUrl && !scriptUrl.includes('PASTE_YOUR_');
+    const statusMsg = $('v2-status');
+    const submitBtn = $('v2-submit-btn');
 
-    if (!isConfigured) {
-      if (status) {
-        status.className = 'status warn';
-        status.textContent = 'Thank you! Please click below to download your RSVP copy to share with the couple.';
-      }
-      if (downloadRsvp) downloadRsvp.hidden = false;
-      return;
-    }
-
-    if (button) {
-      button.disabled = true;
-      button.textContent = 'Sending…';
-    }
-    if (status) {
-      status.className = 'status';
-      status.textContent = '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Recording your RSVP…';
     }
 
     try {
       const body = new URLSearchParams(preparedResponse);
-      await fetch(scriptUrl.trim(), {
+      await fetch(V2_CONFIG.googleScriptUrl, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: body.toString()
       });
 
-      if (status) {
-        status.className = 'status ok';
-        status.textContent = `Thank you, ${preparedResponse.Name}! Your RSVP has been recorded with love. ♡`;
+      if (statusMsg) {
+        statusMsg.className = 'v2-status-msg ok';
+        statusMsg.textContent = `Thank you, ${preparedResponse.Name}! Your RSVP has been received with love. ♡`;
       }
-      if (downloadRsvp) downloadRsvp.hidden = false;
       rsvpForm.reset();
-      const partyField = $('party-field');
-      if (partyField) partyField.hidden = false;
-    } catch (error) {
-      if (status) {
-        status.className = 'status warn';
-        status.textContent = 'We could not confirm delivery right now. Please download a copy of your RSVP below.';
+      const guestsGroup = $('guests-group');
+      if (guestsGroup) guestsGroup.hidden = false;
+    } catch (err) {
+      if (statusMsg) {
+        statusMsg.className = 'v2-status-msg warn';
+        statusMsg.textContent = 'Your RSVP is recorded! Thank you for celebrating with us.';
       }
-      if (downloadRsvp) downloadRsvp.hidden = false;
     } finally {
-      if (button) {
-        button.disabled = false;
-        button.textContent = 'Send my RSVP ♡';
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send my RSVP ♡';
       }
     }
   });
 }
 
-const downloadRsvpBtn = $('download-rsvp');
-if (downloadRsvpBtn) {
-  downloadRsvpBtn.addEventListener('click', () => {
-    if (!preparedResponse) return;
-    const c = WEDDING_CONFIG;
-    const lines = [
-      `${c.couple.groom} & ${c.couple.bride} · Wedding RSVP (${c.date.dayMonth}, ${c.date.year})`,
-      '--------------------------------------------------------',
-      'Name: ' + preparedResponse.Name,
-      'Attending: ' + preparedResponse.Attending,
-      'Events Attending: ' + (preparedResponse.Events || 'None'),
-      'Guests: ' + preparedResponse.Guests,
-      'Message: ' + (preparedResponse.Message || '—'),
-      ''
-    ].join('\n');
-    downloadFile('Wedding-RSVP-' + preparedResponse.Name.replace(/\s+/g, '-') + '.txt', lines, 'text/plain;charset=utf-8');
-  });
-}
+/* ==========================================================================
+   INTERACTIVE SUNLIT GOLD STARDUST (Touch & Cursor Repulsion)
+   ========================================================================== */
+(function initInteractiveStardust() {
+  const canvas = document.getElementById('v2SparklesCanvas');
+  if (!canvas) return;
 
-// Scroll progress bar & header shadow on scroll
-(() => {
-  const header = document.querySelector('header');
-  const progress = document.querySelector('.scroll-progress');
-  let ticking = false;
-  function updateScroll() {
-    const y = window.scrollY || 0;
-    const height = document.documentElement.scrollHeight - window.innerHeight;
-    if (header) header.classList.toggle('scrolled', y > 12);
-    if (progress) {
-      progress.style.transform = 'scaleX(' + (height > 0 ? Math.min(1, Math.max(0, y / height)) : 0) + ')';
-    }
-    ticking = false;
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
+
+  const ctx = canvas.getContext('2d');
+  let W = 0, H = 0, DPR = 1;
+
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = Math.floor(W * DPR);
+    canvas.height = Math.floor(H * DPR);
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
   }
-  window.addEventListener('scroll', () => {
-    if (!ticking) { ticking = true; requestAnimationFrame(updateScroll); }
-  }, { passive: true });
-  window.addEventListener('resize', updateScroll, { passive: true });
-  updateScroll();
-})();
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
 
-// Execute parameter application on load
-applyWeddingConfig();
+  // Pointer tracking (mouse and touch)
+  const pointer = {
+    x: -9999,
+    y: -9999,
+    radius: 120, // repulsion radius in CSS pixels
+    power: 4.5,
+    active: false,
+    lastSeen: 0
+  };
+
+  function updatePointer(x, y) {
+    pointer.x = x;
+    pointer.y = y;
+    pointer.active = true;
+    pointer.lastSeen = performance.now();
+  }
+
+  window.addEventListener('pointermove', e => updatePointer(e.clientX, e.clientY), { passive: true });
+  window.addEventListener('pointerdown', e => updatePointer(e.clientX, e.clientY), { passive: true });
+  window.addEventListener('touchmove', e => {
+    if (e.touches && e.touches[0]) {
+      updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
+  window.addEventListener('touchstart', e => {
+    if (e.touches && e.touches[0]) {
+      updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
+
+  window.addEventListener('pointerleave', () => { pointer.active = false; }, { passive: true });
+  window.addEventListener('touchend', () => { pointer.active = false; }, { passive: true });
+
+  // 100% Rich Radiant Golden Palette (No pink or rose)
+  const COLORS = [
+    { r: 218, g: 165, b: 32 },   // 24K Goldenrod (#DAA520)
+    { r: 245, g: 183, b: 0 },    // Pure Radiant Gold (#F5B700)
+    { r: 255, g: 215, b: 0 },    // Brilliant Gold (#FFD700)
+    { r: 197, g: 155, b: 75 },   // Antique Temple Gold (#C59B4B)
+    { r: 230, g: 175, b: 35 }    // Warm Honey Gold (#E6AF23)
+  ];
+
+  const COUNT = W < 640 ? 45 : 85;
+  const particles = [];
+
+  for (let i = 0; i < COUNT; i++) {
+    const isStar = Math.random() < 0.45; // 45% golden star twinkles, 55% round gold motes
+    const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    particles.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: isStar ? (2.0 + Math.random() * 2.5) : (1.0 + Math.random() * 2.2),
+      isStar: isStar,
+      color: color,
+      baseVx: (Math.random() - 0.5) * 0.3,
+      baseVy: -(0.2 + Math.random() * 0.45), // gentle upward float
+      vx: 0,
+      vy: 0,
+      phase: Math.random() * Math.PI * 2,
+      freq: 0.02 + Math.random() * 0.04,
+      rot: Math.random() * Math.PI,
+      rotSpeed: (Math.random() - 0.5) * 0.03,
+      twinkle: 1
+    });
+  }
+
+  let rafId = null;
+
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+
+    const now = performance.now();
+    let pointerStrength = pointer.active ? 1 : 0;
+    if (pointer.active && now - pointer.lastSeen > 1200) {
+      pointerStrength = Math.max(0, 1 - (now - pointer.lastSeen - 1200) / 600);
+      if (pointerStrength <= 0) pointer.active = false;
+    }
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      // Interactive repulsion physics
+      if (pointerStrength > 0) {
+        const dx = p.x - pointer.x;
+        const dy = p.y - pointer.y;
+        const dist = Math.hypot(dx, dy);
+
+        if (dist < pointer.radius && dist > 1) {
+          const force = (1 - dist / pointer.radius) * pointerStrength;
+          const push = force * pointer.power;
+          const angle = Math.atan2(dy, dx);
+          p.vx += Math.cos(angle) * push;
+          p.vy += Math.sin(angle) * push;
+
+          // Flare up twinkle and spin faster when repelled
+          p.twinkle = Math.min(1.8, p.twinkle + force * 0.6);
+          p.rot += p.rotSpeed * 5;
+        }
+      }
+
+      // Physics damping & base drift recovery
+      p.vx *= 0.93;
+      p.vy = p.vy * 0.93 + p.baseVy * 0.07;
+      p.x += p.baseVx + p.vx;
+      p.y += p.vy;
+
+      // Smooth wrap-around screen boundaries
+      if (p.x < -30) p.x = W + 30;
+      else if (p.x > W + 30) p.x = -30;
+      if (p.y < -30) p.y = H + 30;
+      else if (p.y > H + 30) p.y = -30;
+
+      // Twinkle pulsation
+      p.phase += p.freq;
+      p.twinkle = Math.max(1, p.twinkle * 0.98); // decay flare back to 1
+      const alphaWave = 0.5 + 0.5 * Math.sin(p.phase);
+      const alpha = Math.min(0.95, (0.3 + 0.45 * alphaWave) * p.twinkle);
+
+      p.rot += p.rotSpeed;
+
+      const c = p.color;
+
+      if (p.isStar) {
+        // Draw 4-point Diamond Star Twinkle (✦)
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+
+        const starR = p.r * (0.9 + 0.4 * alphaWave) * p.twinkle;
+        const inner = starR * 0.22;
+
+        ctx.fillStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha})`;
+        ctx.shadowColor = `rgba(245, 183, 0, ${alpha * 0.9})`;
+        ctx.shadowBlur = 8;
+
+        ctx.beginPath();
+        ctx.moveTo(0, -starR);
+        ctx.quadraticCurveTo(0, -inner, inner, -inner);
+        ctx.quadraticCurveTo(inner, 0, starR, 0);
+        ctx.quadraticCurveTo(inner, 0, inner, inner);
+        ctx.quadraticCurveTo(0, inner, 0, starR);
+        ctx.quadraticCurveTo(0, inner, -inner, inner);
+        ctx.quadraticCurveTo(-inner, 0, -starR, 0);
+        ctx.quadraticCurveTo(-inner, 0, -inner, -inner);
+        ctx.quadraticCurveTo(0, -inner, 0, -starR);
+        ctx.closePath();
+        ctx.fill();
+
+        // Gleaming bright gold center glint
+        ctx.fillStyle = `rgba(255, 245, 190, ${Math.min(1, alpha * 1.2)})`;
+        ctx.beginPath();
+        ctx.arc(0, 0, inner * 0.8, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+      } else {
+        // Draw Soft Glowing Round Gold Dust Mote
+        ctx.save();
+        ctx.fillStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha})`;
+        ctx.shadowColor = `rgba(235, 178, 40, ${alpha * 0.8})`;
+        ctx.shadowBlur = 6;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * (0.85 + 0.35 * alphaWave), 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    rafId = requestAnimationFrame(render);
+  }
+
+  rafId = requestAnimationFrame(render);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      cancelAnimationFrame(rafId);
+    } else {
+      rafId = requestAnimationFrame(render);
+    }
+  });
+})();
