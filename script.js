@@ -12,7 +12,7 @@ const WEDDING_CONFIG = {
     bride: 'Abhigna',
     bridePrefix: 'D/O',
     brideParents: 'Venkateswara Rao & Anitha',
-    initials: 'A & S'
+    initials: 'S & A'
   },
 
   // Dates & Times
@@ -39,7 +39,7 @@ const WEDDING_CONFIG = {
 
   // Story & Section Headings/Texts
   texts: {
-    pageTitle: 'Abhigna weds Sai Krishna · Wedding Celebration',
+    pageTitle: 'Sai Krishna weds Abhigna · Wedding Celebration',
 
     // Hero Section
     heroEyebrow: 'LET THE CELEBRATION BEGIN',
@@ -100,10 +100,10 @@ const WEDDING_CONFIG = {
 
   // Calendar Event (.ics download & Google Calendar)
   calendar: {
-    title: 'Abhigna weds Sai Krishna Wedding',
-    description: 'Join us to celebrate the wedding of Abhigna and Sai Krishna (Starts at 7:30 AM, Muhurtham at 9:22 AM). Breakfast and lunch follows.',
-    icsFilename: 'Abhigna-Sai-Krishna-Wedding.ics',
-    uid: 'abhigna-sai-20261122@wedding'
+    title: 'Sai Krishna weds Abhigna Wedding',
+    description: 'Join us to celebrate the wedding of Sai Krishna and Abhigna (Starts at 7:30 AM, Muhurtham at 9:22 AM). Breakfast and lunch follows.',
+    icsFilename: 'Sai-Krishna-Abhigna-Wedding.ics',
+    uid: 'sai-abhigna-20261122@wedding'
   },
 
   // Google Apps Script Web App URL for recording RSVPs to Google Sheets

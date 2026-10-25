@@ -1,5 +1,5 @@
 /* ============================================================
-   Abhigna weds Sai Krishna · V4 Royal Gate & Mandapam Script
+   Sai Krishna weds Abhigna · V4 Royal Gate & Mandapam Script
    ============================================================ */
 
 var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw1HL5bZfJ7vfG4RNAKiRjrdVKb5EcL1Ywbejre-Lo5vPsQtag6STAz439pAFI9gDyz/exec';
@@ -203,7 +203,6 @@ function openGate() {
   gate.classList.add('open');
   petalBurst(40);
   if (cue) cue.classList.add('show');
-  MUSIC.play();
   setTimeout(function() {
     gate.style.display = 'none';
   }, 1500);
