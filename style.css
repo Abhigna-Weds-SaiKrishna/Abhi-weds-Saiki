@@ -555,28 +555,6 @@ body {
   text-decoration: underline;
 }
 
-/* ==========================================================================
-   VENUE SECTION
-   ========================================================================== */
-.v2-venue-card {
-  text-align: center;
-}
-
-.v2-venue-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--emerald-dark);
-  margin-bottom: 8px;
-}
-
-.v2-venue-address {
-  font-size: 16.5px;
-  font-weight: 500;
-  color: var(--text-dark);
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
 
 /* ==========================================================================
    RSVP FORM (V2 Styling)
@@ -1025,18 +1003,6 @@ select.v2-input {
   .v2-btn-textlink {
     font-size: 14px;
     font-weight: 700;
-  }
-
-  /* Venue Card */
-  .v2-venue-name {
-    font-size: 22px;
-    font-weight: 700;
-  }
-
-  .v2-venue-address {
-    font-size: 15.5px;
-    font-weight: 500;
-    color: #12281e;
   }
 
   /* RSVP Form */
