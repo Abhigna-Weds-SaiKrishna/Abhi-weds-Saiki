@@ -281,6 +281,68 @@ body {
   line-height: 1;
 }
 
+.v2-cal-pill-hero {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(197, 155, 75, 0.18);
+  color: #7a5410;
+  border: 1px solid rgba(197, 155, 75, 0.45);
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 2px 9px;
+  border-radius: 14px;
+  margin-left: 6px;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+}
+
+.v2-cal-pill-hero:hover {
+  background: var(--rose);
+  color: #ffffff;
+  border-color: var(--rose);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(183, 93, 105, 0.25);
+}
+
+.v2-muhurtham-line {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 2px 0;
+}
+
+.v2-cal-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(197, 155, 75, 0.14);
+  color: #8c6418;
+  border: 1px solid rgba(197, 155, 75, 0.4);
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 3px 10px;
+  border-radius: 20px;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+}
+
+.v2-cal-pill:hover {
+  background: var(--rose);
+  color: #ffffff;
+  border-color: var(--rose);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(183, 93, 105, 0.25);
+}
+
 /* Primary RSVP Pill Button */
 .v2-btn-rsvp {
   display: inline-flex;
