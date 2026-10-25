@@ -514,6 +514,14 @@ body {
   box-shadow: 0 0 0 3px rgba(183, 93, 105, 0.15);
 }
 
+select.v2-input {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23C59B4B' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 16px center;
+  padding-right: 42px;
+}
+
 /* Radio attendance cards */
 .v2-attendance-grid {
   display: grid;
