@@ -735,6 +735,21 @@ select.v2-input {
   text-transform: uppercase;
 }
 
+.v2-footer .hashtag {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #b07e2c;
+  background: rgba(255, 253, 249, 0.95);
+  border: 1px solid rgba(197, 155, 75, 0.45);
+  padding: 7px 22px;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(27, 56, 43, 0.04);
+}
+
 /* Emoji Burst Animation */
 .emoji-burst {
   position: fixed;
