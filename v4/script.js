@@ -1,5 +1,5 @@
 /* ============================================================
-   Sai Krishna & Abhigna · V4 Royal Gate & Mandapam Script
+   Abhigna weds Sai Krishna · V4 Royal Gate & Mandapam Script
    ============================================================ */
 
 var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw1HL5bZfJ7vfG4RNAKiRjrdVKb5EcL1Ywbejre-Lo5vPsQtag6STAz439pAFI9gDyz/exec';
@@ -219,6 +219,15 @@ if (sealBtn) {
 if (gate) {
   gate.addEventListener('click', openGate);
 }
+if (cue) {
+  cue.addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = document.getElementById('details') || document.querySelector('.mandap-sec') || document.querySelector('.invite');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+}
 
 /* ===== 5. Team Tug-of-War (Sai Krishna vs Abhigna) ===== */
 var chosenTeam = null;
@@ -353,30 +362,9 @@ if (rsvpForm) {
     .finally(function() {
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit RSVP Online';
+        submitBtn.textContent = 'Submit RSVP';
       }
     });
-  });
-}
-
-// WhatsApp Quick RSVP
-var waBtn = document.getElementById('sendWa');
-if (waBtn) {
-  waBtn.addEventListener('click', function() {
-    var name = (document.getElementById('rn').value || '').trim();
-    var guests = document.getElementById('rg').value || '1';
-    if (!name) {
-      document.getElementById('rn').focus();
-      return;
-    }
-    var teamStr = chosenTeam ? ('Cheering for Team ' + (chosenTeam === 'bride' ? 'Abhigna' : 'Sai Krishna') + '! ') : '';
-    var msg;
-    if (attendance === 'yes') {
-      msg = 'Namaste! ' + name + ' here — we will joyfully attend Sai Krishna & Abhigna’s wedding on Sunday, 22 Nov 2026. Guests: ' + guests + '. ' + teamStr + '🌸';
-    } else {
-      msg = 'Namaste! ' + name + ' here — with regret we cannot attend Sai Krishna & Abhigna’s wedding. Sending our heartiest blessings & love! 🙏';
-    }
-    window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
   });
 }
 

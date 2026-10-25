@@ -1,5 +1,5 @@
 /* ============================================================
-   Sai Krishna & Abhigna · V3 Contemporary Luxury Editorial Script
+   Abhigna weds Sai Krishna · V3 Contemporary Luxury Editorial Script
    ============================================================ */
 
 var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw1HL5bZfJ7vfG4RNAKiRjrdVKb5EcL1Ywbejre-Lo5vPsQtag6STAz439pAFI9gDyz/exec';

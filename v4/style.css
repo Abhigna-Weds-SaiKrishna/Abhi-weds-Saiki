@@ -428,15 +428,32 @@ a {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #fff6e0;
-  background: rgba(35, 19, 8, 0.62);
-  border: 1px solid rgba(247, 225, 160, 0.45);
+  background: rgba(35, 19, 8, 0.72);
+  border: 1px solid rgba(247, 225, 160, 0.55);
   border-radius: 30px;
-  padding: 7px 15px;
+  padding: 8px 18px;
   white-space: nowrap;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   opacity: 0;
-  transition: opacity 0.6s ease 0.4s;
-  pointer-events: none;
+  transition: opacity 0.6s ease 0.4s, background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  pointer-events: auto;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+}
+
+.scroll-cue:hover {
+  background: rgba(110, 30, 26, 0.9);
+  border-color: #f7e1a0;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(158, 43, 37, 0.5);
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.scroll-cue:focus-visible {
+  outline: 2px solid var(--marigold);
+  outline-offset: 3px;
 }
 
 .scroll-cue.show {

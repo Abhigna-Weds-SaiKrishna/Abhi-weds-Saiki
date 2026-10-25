@@ -1,11 +1,11 @@
 // ==========================================================================
-// SAI KRISHNA & ABHIGNA WEDDING — VERSION 2 LOGIC
+// ABHIGNA WEDS SAI KRISHNA — VERSION 2 LOGIC
 // ==========================================================================
 
 const V2_CONFIG = {
   couple: {
-    groom: 'Sai Krishna',
-    bride: 'Abhigna'
+    bride: 'Abhigna',
+    groom: 'Sai Krishna'
   },
   date: {
     weddingDay: 'Sunday, November 22, 2026',
