@@ -702,6 +702,14 @@ select.v2-input {
   border: 1px solid #f6d29b;
 }
 
+.v2-status-msg.error {
+  display: block;
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+  line-height: 1.5;
+}
+
 /* ==========================================================================
    FOOTER
    ========================================================================== */

@@ -111,6 +111,11 @@ if (rsvpForm) {
       Message: $('message') ? $('message').value.trim() : ''
     };
 
+    // Save a local backup in localStorage so details are never lost
+    try {
+      localStorage.setItem('last_submitted_rsvp', JSON.stringify(preparedResponse));
+    } catch (_) {}
+
     const statusMsg = $('v2-status');
     const submitBtn = $('v2-submit-btn');
 
@@ -119,32 +124,86 @@ if (rsvpForm) {
       submitBtn.textContent = 'Recording your RSVP…';
     }
 
+    if (statusMsg) {
+      statusMsg.className = 'v2-status-msg';
+      statusMsg.style.display = 'none';
+      statusMsg.textContent = '';
+    }
+
+    let isSuccess = false;
+    let errorMessage = '';
+
+    // 15s timeout controller to prevent hanging on poor mobile connections
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
+
     try {
       const body = new URLSearchParams(preparedResponse);
-      await fetch(V2_CONFIG.googleScriptUrl, {
+      const res = await fetch(V2_CONFIG.googleScriptUrl, {
         method: 'POST',
-        mode: 'no-cors',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body.toString()
+        body: body.toString(),
+        signal: controller.signal
       });
+      clearTimeout(timeoutId);
 
+      if (!res.ok) {
+        throw new Error(`Server returned HTTP ${res.status}`);
+      }
+
+      const data = await res.json().catch(() => null);
+      if (data && data.ok === false) {
+        throw new Error(data.error || 'Server indicated submission failed');
+      }
+
+      isSuccess = true;
+    } catch (primaryErr) {
+      clearTimeout(timeoutId);
+      console.warn('Direct fetch attempt failed:', primaryErr);
+
+      // If fetch failed due to CORS restriction or adblock, attempt fallback fetch
+      if (primaryErr.name !== 'AbortError') {
+        try {
+          const body = new URLSearchParams(preparedResponse);
+          await fetch(V2_CONFIG.googleScriptUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: body.toString()
+          });
+          isSuccess = true;
+        } catch (fallbackErr) {
+          console.error('Fallback RSVP submission error:', fallbackErr);
+          errorMessage = primaryErr.message || fallbackErr.message || 'Connection error';
+        }
+      } else {
+        errorMessage = 'Connection timed out. Please check your internet connection.';
+      }
+    }
+
+    if (isSuccess) {
       if (statusMsg) {
         statusMsg.className = 'v2-status-msg ok';
+        statusMsg.style.display = 'block';
         statusMsg.textContent = `Thank you, ${preparedResponse.Name}! Your RSVP has been received with love. ♡`;
       }
       rsvpForm.reset();
       const guestsGroup = $('guests-group');
       if (guestsGroup) guestsGroup.hidden = false;
-    } catch (err) {
+    } else {
       if (statusMsg) {
-        statusMsg.className = 'v2-status-msg warn';
-        statusMsg.textContent = 'Your RSVP is recorded! Thank you for celebrating with us.';
+        statusMsg.className = 'v2-status-msg error';
+        statusMsg.style.display = 'block';
+        statusMsg.innerHTML = `
+          <strong>Delivery could not be confirmed.</strong><br>
+          We had trouble reaching the RSVP server (${errorMessage || 'Network error'}). Please try again or share your RSVP directly with Sai Krishna &amp; Abhigna.
+        `;
       }
-    } finally {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Send my RSVP ♡';
-      }
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send my RSVP ♡';
     }
   });
 }
